@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global (accessibility & typography) */
+:root {
+  --bg: #030305;
+  --muted: #9aa0a6;
+  --card: #0f1113;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @apply bg-kapBlack text-white;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial;
+}
+
+/* focus outline for keyboard nav */
+:focus {
+  outline: 3px solid rgba(99,102,241,0.45);
+  outline-offset: 2px;
+}
+
+/* subtle card */
+.kap-card {
+  @apply bg-[#0b0b0d] rounded-2xl p-6 shadow-kap-soft border border-transparent;
+}
+
+/* responsive container similar to center */
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* small utility */
+.kap-pill {
+  @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium bg-[#101012]/50 border border-[#ffffff]/6;
+}
