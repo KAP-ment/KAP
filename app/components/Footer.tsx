@@ -44,7 +44,7 @@ export default function Footer() {
             <h4 className="font-semibold">Social</h4>
             <div className="mt-3 flex items-center gap-3">
               {/* Change social links here: app/components/Footer.tsx */}
-              <a aria-label="Instagram" href="https://www.instagram.com/kap.ment?igsh=MTZmOHRjeXBxemhxYQ==" className="p-2 rounded-md bg-white/3"><Youtube size={18} /></a>
+              <a aria-label="Instagram" href="https://www.instagram.com/kap.ment?igsh=MTZmOHRjeXBxemhxYQ==" className="p-2 rounded-md bg-white/3"><Instagram size={18} /></a>
               <a aria-label="LinkedIn" href="#" className="p-2 rounded-md bg-white/3"><LinkedIn size={18} /></a>
               <a aria-label="Twitter" href="#" className="p-2 rounded-md bg-white/3"><Twitter size={18} /></a>
               <a aria-label="YouTube" href="#" className="p-2 rounded-md bg-white/3"><Youtube size={18} /></a>
