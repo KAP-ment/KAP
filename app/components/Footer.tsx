@@ -1,5 +1,5 @@
 'use client'
-import { Instagram, LinkedIn, Twitter, Youtube } from 'lucide-react'
+import { Instagram, linkedin, Twitter, Youtube } from 'lucide-react'
 import Link from 'next/link'
 
 export default function Footer() {
