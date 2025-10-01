@@ -1,5 +1,5 @@
 'use client'
-import { Instagram, Linkedin, Twitter, Youtube } from 'lucide-react'
+import { Instagram, Linkedin, X, Youtube } from 'lucide-react'
 import Link from 'next/link'
 
 export default function Footer() {
@@ -46,7 +46,7 @@ export default function Footer() {
               {/* Change social links here: app/components/Footer.tsx */}
               <a aria-label="Instagram" href="https://www.instagram.com/kap.ment?igsh=MTZmOHRjeXBxemhxYQ==" className="p-2 rounded-md bg-white/3"><Instagram size={18} /></a>
               <a aria-label="LinkedIn" href="#" className="p-2 rounded-md bg-white/3"><Linkedin size={18} /></a>
-              <a aria-label="Twitter" href="#" className="p-2 rounded-md bg-white/3"><Twitter size={18} /></a>
+              <a aria-label="Twitter" href="#" className="p-2 rounded-md bg-white/3"><X size={18} /></a>
               <a aria-label="YouTube" href="#" className="p-2 rounded-md bg-white/3"><Youtube size={18} /></a>
             </div>
           </div>
