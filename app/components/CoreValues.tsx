@@ -21,18 +21,17 @@ export default function CoreValues() {
           <motion.div key={i} className="kap-card">
             <div className="flex gap-4 items-start">
               <div className={`p-3 rounded-md bg-white/4`}>
-                <p.className={p.color}><p /></p> {/* placeholder for color */}
-                <p className="sr-only">{p.title}</p>
-                {/* icon */}
-                <p className={`${p.color}`}>
-                  <p />
+                {/* icon with dynamic color */}
+                <p className={p.color}>
+                  <p.Icon className={`w-6 h-6 ${p.color}`} />
                 </p>
+                <p className="sr-only">{p.title}</p>
               </div>
 
               <div>
                 <div className="flex items-center gap-3">
                   <p className="p-3 rounded-md bg-white/3">
-                    <p />
+                    <p.Icon className={`w-6 h-6 ${p.color}`} />
                   </p>
                   <h3 className="text-xl font-semibold">{p.title}</h3>
                 </div>
