@@ -1,5 +1,5 @@
 'use client'
-import { MapPin, Globe, Users, Cpu, FileText, Presentation, MessageSquare, Signpost, FolderOpen, Star, Lock } from 'lucide-react'
+import { MapPin, Globe, Users, Cpu, FileText, Presentation, MessageSquare, SignpostBig, FolderOpen, Star, Lock } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 type Feature = {
