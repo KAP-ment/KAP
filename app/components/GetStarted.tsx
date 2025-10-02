@@ -7,7 +7,7 @@ const items = [
   { title: 'AI Learning Assistant', desc: 'See trends, track progress, and celebrate wins.', img: '/images/showcase/ai.png' },
   { title: 'Workshops', desc: 'Join live sessions or host your own.', img: '/images/showcase/workshop.png' },
   { title: 'Collaborative Notes', desc: 'Take and share notes instantly.', img: '/image/showcase/notes.png' },
-  { title: 'Leaderboard', desc: 'See trends and achievements.', img: '/images/showcase/leaderboard.png' }
+  { title: 'Community feed', desc: 'See what trends are going on.', img: '/images/showcase/hybrid.png' }
 ]
 
 export default function GetStarted() {
