@@ -8,39 +8,57 @@ const pillars = [
   { title: 'Trust & Culture', desc: 'Built on a foundation of respect, safety, and belonging — creating a culture where every learner feels valued.', Icon: ShieldCheck, color: 'text-cyan-300' }
 ]
 
+// Framer Motion variants for card entrance
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.2, duration: 0.5, ease: 'easeOut' }
+  })
+}
+
 export default function CoreValues() {
   return (
     <div className="container py-20">
+      {/* Section heading */}
       <div className="text-center">
         <h2 className="text-3xl font-bold">Powered by Progress, Community, and Trust</h2>
         <p className="mt-3 text-[#bfc6cb]">The foundation that makes learning engaging and meaningful on KAPment.</p>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Cards */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6"
+      >
         {pillars.map((p, i) => (
-          <motion.div key={i} className="kap-card">
+          <motion.div
+            key={i}
+            variants={cardVariants}
+            custom={i}
+            whileHover={{ y: -8, boxShadow: '0 12px 30px rgba(0,0,0,0.6)' }}
+            className="kap-card"
+          >
             <div className="flex gap-4 items-start">
-              <div className={`p-3 rounded-md bg-white/4`}>
-                {/* icon with dynamic color */}
-                <p className={p.color}>
-                  <p.Icon className={`w-6 h-6 ${p.color}`} />
-                </p>
-                <p className="sr-only">{p.title}</p>
-              </div>
+              {/* Icon with hover scale */}
+              <motion.div
+                whileHover={{ scale: 1.15 }}
+                className="p-3 rounded-md bg-white/4"
+              >
+                <p.Icon className={`w-6 h-6 ${p.color}`} />
+              </motion.div>
 
               <div>
-                <div className="flex items-center gap-3">
-                  <p className="p-3 rounded-md bg-white/3">
-                    <p.Icon className={`w-6 h-6 ${p.color}`} />
-                  </p>
-                  <h3 className="text-xl font-semibold">{p.title}</h3>
-                </div>
+                <h3 className="text-xl font-semibold">{p.title}</h3>
                 <p className="mt-3 text-[#9aa0a6]">{p.desc}</p>
               </div>
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   )
 }
