@@ -1,80 +1,43 @@
-'use client'
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import Image from 'next/image'
+'use client';
+
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Hero() {
   return (
-    <section className="relative py-24 bg-gradient-to-b from-kapNavy to-kapBlack overflow-hidden">
-      <div className="container relative z-10 text-center">
-        {/* Title */}
+    <section aria-label="Hero" className="py-28">
+      <div className="container mx-auto px-6 text-center">
         <motion.h1
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight max-w-5xl mx-auto"
+          className="text-6xl md:text-7xl font-extrabold leading-tight"
         >
           Where Learners Belong
         </motion.h1>
 
-        {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="mt-6 text-lg md:text-xl text-[#bfc6cb] max-w-3xl mx-auto"
+          transition={{ delay: 0.15, duration: 0.6 }}
+          className="mt-6 text-lg text-slate-400 max-w-2xl mx-auto"
         >
           Together, we’re reshaping learning into something more meaningful — a trusted space to connect, collaborate, and grow.
         </motion.p>
 
-        {/* Buttons */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="mt-8 flex justify-center gap-4"
-        >
-          <Link
-            href="/signup"
-            className="bg-white text-black px-6 py-3 rounded-lg font-semibold hover:shadow-kap-deep focus:outline-none focus:ring-2"
-          >
-            Get Started
+        <div className="mt-10 flex items-center justify-center gap-4">
+          <Link href="/signup">
+            <a className="rounded-lg bg-white text-black px-6 py-3 font-semibold shadow-md hover:brightness-95 focus:ring-2 focus:ring-offset-2">Get Started</a>
           </Link>
-          <a
-            href="#features"
-            className="border border-[#ffffff]/10 px-5 py-3 rounded-lg inline-flex items-center gap-2 hover:bg-white/4"
-          >
-            Learn More
-          </a>
-        </motion.div>
-      </div>
-
-      {/* Interactive Banner Images */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-6xl px-4">
-        <div className="flex justify-center gap-6">
-          <motion.div
-            whileHover={{ scale: 1.05, y: -8 }}
-            transition={{ type: 'spring', stiffness: 200 }}
-            className="w-1/3 h-40 rounded-2xl overflow-hidden shadow-lg"
-          >
-            <Image src="/showcase/tutor.png" alt="Tutor" width={400} height={200} className="object-cover w-full h-full" />
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.05, y: -8 }}
-            transition={{ type: 'spring', stiffness: 200 }}
-            className="w-1/3 h-40 rounded-2xl overflow-hidden shadow-lg hidden md:block"
-          >
-            <Image src="/showcase/network.png" alt="Network" width={400} height={200} className="object-cover w-full h-full" />
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.05, y: -8 }}
-            transition={{ type: 'spring', stiffness: 200 }}
-            className="w-1/3 h-40 rounded-2xl overflow-hidden shadow-lg hidden lg:block"
-          >
-            <Image src="/showcase/ai.png" alt="AI Guide" width={400} height={200} className="object-cover w-full h-full" />
-          </motion.div>
+          <a href="#features" className="rounded-lg border border-slate-700 px-6 py-3 text-slate-200">Learn More</a>
         </div>
       </div>
+
+      {/* subtle animated background effect */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        {/* You can replace with a Lottie/Canvas/Particles background later */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-30" />
+      </div>
     </section>
-  )
+  );
 }
