@@ -30,7 +30,7 @@ export default function QuickStart() {
         <motion.div whileHover={{ y: -6 }} className="kap-card">
           <Image src="/images/screenshots/ai-assistant.png" alt="AI Learning Assistant" width={400} height={240} className="rounded-md" />
           <h3 className="mt-4 text-lg font-semibold">AI Learning Assistant</h3>
-          <p className="text-[#9aa0a6] mt-2">Take and share notes instantly with peers.</p>
+          <p className="text-[#9aa0a6] mt-2">See trends, track progress, and celebrate wins.</p>
         </motion.div>
 
         <motion.div whileHover={{ y: -6 }} className="kap-card">
@@ -42,7 +42,7 @@ export default function QuickStart() {
         <motion.div whileHover={{ y: -6 }} className="kap-card">
           <Image src="/images/screenshots/notes.png" alt="Collaborative Notes" width={400} height={240} className="rounded-md" />
           <h3 className="mt-4 text-lg font-semibold">Collaborative Notes</h3>
-          <p className="text-[#9aa0a6] mt-2">See trends, track progress, and celebrate wins.</p>
+          <p className="text-[#9aa0a6] mt-2">Take and share notes instantly with peers.</p>
         </motion.div>
 
         <motion.div whileHover={{ y: -6 }} className="kap-card">
