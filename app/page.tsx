@@ -13,7 +13,6 @@ export default function Home() {
       <section id="getstarted"><GetStarted /></section>
       <section id="features"><Features /></section>
       <section id="core-values"><CoreValues /></section>
-      <section id="quick-start"><QuickStart /></section>
       <section id="showcase"><Showcase /></section>
       <section id="testimonials"><Testimonials /></section>
     </>
