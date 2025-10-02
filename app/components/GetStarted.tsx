@@ -4,10 +4,10 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const items = [
-  { title: 'AI Learning Assistant', desc: 'See trends, track progress, and celebrate wins.', img: '/showcase/ai.png' },
-  { title: 'Workshops', desc: 'Join live sessions or host your own.', img: '/showcase/workshop.png' },
-  { title: 'Collaborative Notes', desc: 'Take and share notes instantly.', img: '/showcase/notes.png' },
-  { title: 'Leaderboard', desc: 'See trends and achievements.', img: '/showcase/leaderboard.png' }
+  { title: 'AI Learning Assistant', desc: 'See trends, track progress, and celebrate wins.', img: '/images/showcase/ai.png' },
+  { title: 'Workshops', desc: 'Join live sessions or host your own.', img: '/images/showcase/workshop.png' },
+  { title: 'Collaborative Notes', desc: 'Take and share notes instantly.', img: '/image/showcase/notes.png' },
+  { title: 'Leaderboard', desc: 'See trends and achievements.', img: '/images/showcase/leaderboard.png' }
 ]
 
 export default function GetStarted() {
