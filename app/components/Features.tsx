@@ -1,21 +1,11 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
-  MapPin,
-  Globe,
-  Users,
-  Cpu,
-  FileText,
-  Presentation,
-  MessageSquare,
-  Milestone,
-  FolderOpen,
-  Star,
-  Lock,
-  ChevronDown,
-  ChevronUp,
+  MapPin, Globe, Users, Cpu, FileText, Presentation,
+  MessageSquare, Milestone, FolderOpen, Star, Lock,
+  ChevronDown, ChevronUp
 } from 'lucide-react'
-import { motion } from 'framer-motion'
 
 type Feature = {
   title: string
@@ -40,20 +30,41 @@ const features: Feature[] = [
 
 export default function Features() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const sectionRef = useRef<HTMLDivElement | null>(null)
+
+  // Auto-close when scrolling past the Features section
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect()
+        const completelyOut =
+          rect.bottom < 0 || rect.top > window.innerHeight // section is out of viewport
+
+        if (completelyOut && openIndex !== null) {
+          setOpenIndex(null) // auto-close all
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [openIndex])
 
   return (
-    <div className="container py-20">
+    <div ref={sectionRef} className="container py-20">
+      {/* Heading */}
       <div className="text-center">
         <h2 className="text-3xl font-bold">What’s in KAPment?</h2>
-        <p className="mt-3 text-[#bfc6cb]">Everything you need to learn, share, and grow — together.</p>
+        <p className="mt-3 text-[#bfc6cb]">
+          Everything you need to learn, share, and grow — together.
+        </p>
       </div>
 
-      {/* ===== Desktop Grid ===== */}
+      {/* ====== Desktop Grid ====== */}
       <motion.div
         className="hidden md:grid mt-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         initial="hidden"
         animate="show"
-        variants={{ hidden: {}, show: {} }}
       >
         {features.map((f, i) => (
           <motion.article
@@ -62,7 +73,7 @@ export default function Features() {
             className="kap-card"
           >
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-xl bg-white/3 inline-flex items-center justify-center">
+              <div className="p-3 rounded-xl bg-white/5 inline-flex items-center justify-center">
                 <f.Icon size={28} />
               </div>
               <div>
@@ -75,14 +86,18 @@ export default function Features() {
         ))}
       </motion.div>
 
-      {/* ===== Mobile View ===== */}
-      <div className="block md:hidden mt-12 space-y-4">
+      {/* ====== Mobile View ====== */}
+      <div className="block md:hidden mt-10 space-y-4">
         {/* First 3 as normal cards */}
         {features.slice(0, 3).map((f, i) => (
-          <div key={i} className="kap-card">
+          <motion.article
+            key={i}
+            whileHover={{ y: -3, boxShadow: '0 6px 18px rgba(0,0,0,0.4)' }}
+            className="kap-card"
+          >
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-xl bg-white/3 inline-flex items-center justify-center">
-                <f.Icon size={26} />
+              <div className="p-3 rounded-xl bg-white/5 inline-flex items-center justify-center">
+                <f.Icon size={24} />
               </div>
               <div>
                 <h3 className="font-semibold text-lg">{f.title}</h3>
@@ -90,40 +105,47 @@ export default function Features() {
                 <div className="mt-3 text-xs text-[#9aa0a6]">Category: {f.category}</div>
               </div>
             </div>
-          </div>
+          </motion.article>
         ))}
 
-        {/* Remaining as accordion cards */}
+        {/* Remaining as accordion */}
         {features.slice(3).map((f, i) => {
-          const actualIndex = i + 3
-          const isOpen = openIndex === actualIndex
+          const idx = i + 3
+          const isOpen = openIndex === idx
+
           return (
-            <div key={actualIndex} className="kap-card">
+            <div key={idx} className="kap-card p-0 overflow-hidden">
+              {/* Accordion Header */}
               <button
-                className="flex justify-between items-center w-full text-left"
-                onClick={() => setOpenIndex(isOpen ? null : actualIndex)}
+                onClick={() => setOpenIndex(isOpen ? null : idx)}
+                className="flex items-center justify-between w-full p-4 focus:outline-none focus:ring-0"
               >
                 <div className="flex items-center gap-3">
-                  <div className="p-3 rounded-xl bg-white/3 inline-flex items-center justify-center">
-                    <f.Icon size={24} />
+                  <div className="p-2 rounded-lg bg-white/5">
+                    <f.Icon size={22} />
                   </div>
-                  <h3 className="font-semibold text-lg">{f.title}</h3>
+                  <span className="font-semibold text-base">{f.title}</span>
                 </div>
                 {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
               </button>
 
-              {isOpen && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="mt-3 pl-12"
-                >
-                  <p className="text-[#a6adb2] text-sm">{f.desc}</p>
-                  <div className="mt-2 text-xs text-[#9aa0a6]">Category: {f.category}</div>
-                </motion.div>
-              )}
+              {/* Expandable Body */}
+              <AnimatePresence>
+                {isOpen && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="px-4 pb-4 text-sm text-[#a6adb2]"
+                  >
+                    {f.desc}
+                    <div className="mt-2 text-xs text-[#9aa0a6]">
+                      Category: {f.category}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           )
         })}
