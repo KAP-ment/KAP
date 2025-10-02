@@ -15,19 +15,11 @@ export default function GetStarted() {
 
   useEffect(() => {
     if (!ref.current) return
-    const el = ref.current
-
     const interval = setInterval(() => {
-      if (!paused && el) {
-        el.scrollBy({ left: 1, behavior: 'smooth' })
-
-        // if reached near the end, reset back to start
-        if (el.scrollLeft >= el.scrollWidth / 2) {
-          el.scrollLeft = 0
-        }
+      if (!paused && ref.current) {
+        ref.current.scrollBy({ left: 1, behavior: 'smooth' })
       }
-    }, 50) // adjust speed here
-
+    }, 50) // speed
     return () => clearInterval(interval)
   }, [paused])
 
@@ -38,7 +30,7 @@ export default function GetStarted() {
         Jump into learning with KAPment — quick, simple, personalized.
       </p>
 
-      {/* Infinite auto-scrolling cards */}
+      {/* Auto-scrolling cards */}
       <div
         ref={ref}
         onMouseEnter={() => setPaused(true)}
@@ -47,7 +39,7 @@ export default function GetStarted() {
         onTouchEnd={() => setPaused(false)}
         className="mt-12 flex gap-6 overflow-x-auto scroll-smooth no-scrollbar"
       >
-        {[...items, ...items].map((i, idx) => ( // duplicated for infinite effect
+        {items.map((i, idx) => (
           <motion.div
             key={idx}
             whileHover={{ scale: 1.05 }}
