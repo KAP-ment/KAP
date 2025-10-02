@@ -13,7 +13,7 @@ export default function Navbar() {
           {/* Replace with logo.svg in /public/images/logo.svg */}
           <Link href="/">
             <span className="sr-only">KAPment home</span>
-            <img src="/images/logo.png" alt="KAPment" className="h-15 w-auto" />
+            <img src="/images/logo.png" alt="KAPment" className="h-13 w-auto" />
           </Link>
         </div>
 
