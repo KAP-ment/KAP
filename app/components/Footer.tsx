@@ -53,7 +53,6 @@ export default function Footer() {
 
         <div className="mt-8 border-t border-[#ffffff]/6 pt-6 flex items-center justify-between text-sm text-[#9aa0a6]">
           <div>© {new Date().getFullYear()} KAPment — Powered by KAP</div>
-          <div>Change social links here: <code className="bg-[#0b0b0d] px-2 py-1 rounded">/app/components/Footer.tsx</code></div>
         </div>
       </div>
     </footer>
