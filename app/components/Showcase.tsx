@@ -28,9 +28,9 @@ export default function Showcase() {
         </div>
 
         <div className="kap-card">
-          <Image src="/images/screenshots/kap-score-showcase.png" alt="KAP Score Showcase" width={400} height={240} className="rounded-md" />
-          <h3 className="mt-4 font-semibold">Leaderboard / KAP Score Showcase</h3>
-          <p className="text-[#9aa0a6] mt-2">Progress is visible, motivating, and worth celebrating.</p>
+          <Image src="/images/screenshots/community-feed.png" alt="KAP Score Showcase" width={400} height={240} className="rounded-md" />
+          <h3 className="mt-4 font-semibold">Community Showcase</h3>
+          <p className="text-[#9aa0a6] mt-2">Share notes, short videos, and achievements with peers. Stay motivated, inspired, and connected — all in one feed.</p>
         </div>
       </div>
 
