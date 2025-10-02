@@ -12,48 +12,92 @@ export default function QuickStart() {
     <div className="container py-20">
       <div className="text-center">
         <h2 className="text-3xl font-bold">Get Started in Seconds</h2>
-        <p className="mt-3 text-[#bfc6cb]">Jump into learning with KAPment — quick, simple, and personalized.</p>
+        <p className="mt-3 text-[#bfc6cb]">
+          Jump into learning with KAPment — quick, simple, and personalized.
+        </p>
 
+        {/* Tabs (just visual pills, no filter) */}
         <div className="mt-6 flex justify-center gap-3 flex-wrap">
           {tabs.map((t, i) => (
-            <button key={i}
+            <button
+              key={i}
               onClick={() => setActive(i)}
-              className={`kap-pill ${active === i ? 'ring-2 ring-indigo-500' : ''}`}>
+              className={`kap-pill ${active === i ? 'ring-2 ring-indigo-500' : ''}`}
+            >
               {t}
             </button>
           ))}
         </div>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-6">
-        {/* placeholders — replace /public/images/screenshots/*.png accordingly */}
+      {/* Feature cards */}
+      <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <motion.div whileHover={{ y: -6 }} className="kap-card">
-          <Image src="/images/screenshots/ai-assistant.png" alt="AI Learning Assistant" width={400} height={240} className="rounded-md" />
+          <Image
+            src="/images/screenshots/ai-assistant.png"
+            alt="AI Learning Assistant"
+            width={400}
+            height={240}
+            className="rounded-md object-cover"
+            priority
+          />
           <h3 className="mt-4 text-lg font-semibold">AI Learning Assistant</h3>
-          <p className="text-[#9aa0a6] mt-2">See trends, track progress, and celebrate wins.</p>
+          <p className="text-[#9aa0a6] mt-2">
+            See trends, track progress, and celebrate wins.
+          </p>
         </motion.div>
 
         <motion.div whileHover={{ y: -6 }} className="kap-card">
-          <Image src="/images/screenshots/workshops.png" alt="Workshops" width={400} height={240} className="rounded-md" />
+          <Image
+            src="/images/screenshots/workshops.png"
+            alt="Workshops"
+            width={400}
+            height={240}
+            className="rounded-md object-cover"
+          />
           <h3 className="mt-4 text-lg font-semibold">Workshops</h3>
-          <p className="text-[#9aa0a6] mt-2">Join live sessions or host your own.</p>
+          <p className="text-[#9aa0a6] mt-2">
+            Join live sessions or host your own.
+          </p>
         </motion.div>
 
         <motion.div whileHover={{ y: -6 }} className="kap-card">
-          <Image src="/images/screenshots/notes.png" alt="Collaborative Notes" width={400} height={240} className="rounded-md" />
+          <Image
+            src="/images/screenshots/notes.png"
+            alt="Collaborative Notes"
+            width={400}
+            height={240}
+            className="rounded-md object-cover"
+          />
           <h3 className="mt-4 text-lg font-semibold">Collaborative Notes</h3>
-          <p className="text-[#9aa0a6] mt-2">Take and share notes instantly with peers.</p>
+          <p className="text-[#9aa0a6] mt-2">
+            Take and share notes instantly with peers.
+          </p>
         </motion.div>
 
         <motion.div whileHover={{ y: -6 }} className="kap-card">
-          <Image src="/images/screenshots/leaderboard.png" alt="Leaderboard" width={400} height={240} className="rounded-md" />
+          <Image
+            src="/images/screenshots/leaderboard.png"
+            alt="Leaderboard"
+            width={400}
+            height={240}
+            className="rounded-md object-cover"
+          />
           <h3 className="mt-4 text-lg font-semibold">Leaderboard</h3>
-          <p className="text-[#9aa0a6] mt-2">See trends, track progress, and celebrate wins.</p>
+          <p className="text-[#9aa0a6] mt-2">
+            See trends, track progress, and celebrate wins.
+          </p>
         </motion.div>
       </div>
 
-      <div className="mt-10 text-center">
-        <a href="/explore" className="px-8 py-3 rounded-full bg-white text-black font-semibold">Explore KAPment</a>
+      {/* CTA Button */}
+      <div className="mt-12 text-center">
+        <a
+          href="/explore"
+          className="px-8 py-3 rounded-full bg-white text-black font-semibold shadow-md hover:shadow-lg transition"
+        >
+          Explore KAPment
+        </a>
       </div>
     </div>
   )
