@@ -1,5 +1,20 @@
 'use client'
-import { MapPin, Globe, Users, Cpu, FileText, Presentation, MessageSquare, Milestone, FolderOpen, Star, Lock } from 'lucide-react'
+import { useState } from 'react'
+import {
+  MapPin,
+  Globe,
+  Users,
+  Cpu,
+  FileText,
+  Presentation,
+  MessageSquare,
+  Milestone,
+  FolderOpen,
+  Star,
+  Lock,
+  ChevronDown,
+  ChevronUp,
+} from 'lucide-react'
 import { motion } from 'framer-motion'
 
 type Feature = {
@@ -24,6 +39,8 @@ const features: Feature[] = [
 ]
 
 export default function Features() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
   return (
     <div className="container py-20">
       <div className="text-center">
@@ -31,10 +48,13 @@ export default function Features() {
         <p className="mt-3 text-[#bfc6cb]">Everything you need to learn, share, and grow — together.</p>
       </div>
 
-      <motion.div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" initial="hidden" animate="show" variants={{
-        hidden: {},
-        show: {}
-      }}>
+      {/* ===== Desktop Grid ===== */}
+      <motion.div
+        className="hidden md:grid mt-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        initial="hidden"
+        animate="show"
+        variants={{ hidden: {}, show: {} }}
+      >
         {features.map((f, i) => (
           <motion.article
             key={i}
@@ -54,6 +74,60 @@ export default function Features() {
           </motion.article>
         ))}
       </motion.div>
+
+      {/* ===== Mobile View ===== */}
+      <div className="block md:hidden mt-12 space-y-4">
+        {/* First 3 as normal cards */}
+        {features.slice(0, 3).map((f, i) => (
+          <div key={i} className="kap-card">
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-xl bg-white/3 inline-flex items-center justify-center">
+                <f.Icon size={26} />
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg">{f.title}</h3>
+                <p className="mt-2 text-[#a6adb2] text-sm">{f.desc}</p>
+                <div className="mt-3 text-xs text-[#9aa0a6]">Category: {f.category}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {/* Remaining as accordion cards */}
+        {features.slice(3).map((f, i) => {
+          const actualIndex = i + 3
+          const isOpen = openIndex === actualIndex
+          return (
+            <div key={actualIndex} className="kap-card">
+              <button
+                className="flex justify-between items-center w-full text-left"
+                onClick={() => setOpenIndex(isOpen ? null : actualIndex)}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="p-3 rounded-xl bg-white/3 inline-flex items-center justify-center">
+                    <f.Icon size={24} />
+                  </div>
+                  <h3 className="font-semibold text-lg">{f.title}</h3>
+                </div>
+                {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+              </button>
+
+              {isOpen && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="mt-3 pl-12"
+                >
+                  <p className="text-[#a6adb2] text-sm">{f.desc}</p>
+                  <div className="mt-2 text-xs text-[#9aa0a6]">Category: {f.category}</div>
+                </motion.div>
+              )}
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
