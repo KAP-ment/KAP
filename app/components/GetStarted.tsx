@@ -1,13 +1,12 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const items = [
+  { title: 'Tutot match', desc: 'Find the tutor who fits your learning style.', img: '/images/showcase/tutor.png' },
+  { title: 'Collaborative Notes', desc: 'Take and share notes instantly.', img: '/images/showcase/notes.png' },
   { title: 'AI Learning Assistant', desc: 'See trends, track progress, and celebrate wins.', img: '/images/showcase/ai.png' },
-  { title: 'Workshops', desc: 'Join live sessions or host your own.', img: '/images/showcase/workshop.png' },
-  { title: 'Collaborative Notes', desc: 'Take and share notes instantly.', img: '/image/showcase/notes.png' },
-  { title: 'Community feed', desc: 'See what trends are going on.', img: '/images/showcase/hybrid.png' }
+  { title: 'Workshops', desc: 'Join live sessions or host your own.', img: '/images/screenshots/workshops.png' }
 ]
 
 export default function GetStarted() {
@@ -25,7 +24,8 @@ export default function GetStarted() {
   }, [paused])
 
   return (
-    <section className="container py-20 text-center">
+    // 👇 only visible on lg+ screens
+    <section className="hidden lg:block container py-20 text-center">
       <h2 className="text-3xl md:text-4xl font-bold">Get Started in Seconds</h2>
       <p className="mt-2 text-[#a6adb2]">Jump into learning with KAPment — quick, simple, personalized.</p>
 
