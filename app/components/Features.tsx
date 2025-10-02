@@ -55,11 +55,11 @@ export default function Features() {
       {/* ====== Heading ====== */}
       <div className="text-center">
         {/* ✅ Mobile stays text-3xl, desktop grows */}
-        <h2 className="font-bold text-3xl md:text-5xl lg:text-6xl">
+        <h2 className="font-bold text-3xl md:text-5xl lg:text-7xl">
           What’s in KAPment?
         </h2>
         {/* ✅ Mobile normal, desktop grows */}
-        <p className="mt-3 text-[#bfc6cb] text-base md:text-lg lg:text-xl max-w-3xl mx-auto">
+        <p className="mt-3 text-[#bfc6cb] text-base md:text-lg lg:text-xl max-w-4xl mx-auto">
           Everything you need to learn, share, and grow — together.
         </p>
       </div>
