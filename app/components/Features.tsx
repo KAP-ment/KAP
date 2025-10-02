@@ -38,7 +38,7 @@ export default function Features() {
       if (sectionRef.current) {
         const rect = sectionRef.current.getBoundingClientRect()
         const completelyOut =
-          rect.bottom < 0 || rect.top > window.innerHeight // section is out of viewport
+          rect.bottom < 0 || rect.top > window.innerHeight
 
         if (completelyOut && openIndex !== null) {
           setOpenIndex(null) // auto-close all
@@ -54,10 +54,12 @@ export default function Features() {
     <div ref={sectionRef} className="container py-20">
       {/* ====== Heading ====== */}
       <div className="text-center">
-        <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+        {/* ✅ Mobile stays text-3xl, desktop grows */}
+        <h2 className="font-bold text-3xl md:text-5xl lg:text-6xl">
           What’s in KAPment?
         </h2>
-        <p className="mt-3 text-sm sm:text-base md:text-lg lg:text-xl text-[#bfc6cb] max-w-2xl mx-auto">
+        {/* ✅ Mobile normal, desktop grows */}
+        <p className="mt-3 text-[#bfc6cb] text-base md:text-lg lg:text-xl max-w-3xl mx-auto">
           Everything you need to learn, share, and grow — together.
         </p>
       </div>
