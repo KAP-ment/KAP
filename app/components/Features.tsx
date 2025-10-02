@@ -52,10 +52,12 @@ export default function Features() {
 
   return (
     <div ref={sectionRef} className="container py-20">
-      {/* Heading */}
+      {/* ====== Heading ====== */}
       <div className="text-center">
-        <h2 className="text-3xl font-bold">What’s in KAPment?</h2>
-        <p className="mt-3 text-[#bfc6cb]">
+        <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+          What’s in KAPment?
+        </h2>
+        <p className="mt-3 text-sm sm:text-base md:text-lg lg:text-xl text-[#bfc6cb] max-w-2xl mx-auto">
           Everything you need to learn, share, and grow — together.
         </p>
       </div>
