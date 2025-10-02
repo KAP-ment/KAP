@@ -1,103 +1,71 @@
 'use client'
-import { useState } from 'react'
-import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
-const tabs = ['Notes', 'Workshops', 'Communities', 'AI Help', 'Leaderboard']
+const items = [
+  { title: 'AI Learning Assistant', desc: 'See trends, track progress, and celebrate wins.', img: '/images/showcase/ai.png' },
+  { title: 'Workshops', desc: 'Join live sessions or host your own.', img: '/images/showcase/workshop.png' },
+  { title: 'Collaborative Notes', desc: 'Take and share notes instantly.', img: '/images/showcase/notes.png' },
+  { title: 'Community feed', desc: 'See what trends are going on.', img: '/images/showcase/hybrid.png' }
+]
 
-export default function QuickStart() {
-  const [active, setActive] = useState(0)
+export default function GetStarted() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [paused, setPaused] = useState(false)
+
+  useEffect(() => {
+    if (!ref.current) return
+    const el = ref.current
+
+    const interval = setInterval(() => {
+      if (!paused && el) {
+        el.scrollBy({ left: 1, behavior: 'smooth' })
+
+        // if reached near the end, reset back to start
+        if (el.scrollLeft >= el.scrollWidth / 2) {
+          el.scrollLeft = 0
+        }
+      }
+    }, 50) // adjust speed here
+
+    return () => clearInterval(interval)
+  }, [paused])
 
   return (
-    <div className="container py-20">
-      <div className="text-center">
-        <h2 className="text-3xl font-bold">Get Started in Seconds</h2>
-        <p className="mt-3 text-[#bfc6cb]">
-          Jump into learning with KAPment — quick, simple, and personalized.
-        </p>
+    <section className="container py-20 text-center">
+      <h2 className="text-3xl md:text-4xl font-bold">Get Started in Seconds</h2>
+      <p className="mt-2 text-[#a6adb2]">
+        Jump into learning with KAPment — quick, simple, personalized.
+      </p>
 
-        {/* Tab buttons */}
-        <div className="mt-6 flex justify-center gap-3 flex-wrap">
-          {tabs.map((t, i) => (
-            <button
-              key={i}
-              onClick={() => setActive(i)}
-              className={`kap-pill ${
-                active === i ? 'ring-2 ring-indigo-500' : ''
-              }`}
-            >
-              {t}
-            </button>
-          ))}
-        </div>
+      {/* Infinite auto-scrolling cards */}
+      <div
+        ref={ref}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onTouchStart={() => setPaused(true)}
+        onTouchEnd={() => setPaused(false)}
+        className="mt-12 flex gap-6 overflow-x-auto scroll-smooth no-scrollbar"
+      >
+        {[...items, ...items].map((i, idx) => ( // duplicated for infinite effect
+          <motion.div
+            key={idx}
+            whileHover={{ scale: 1.05 }}
+            className="kap-card min-w-[250px] flex-shrink-0"
+          >
+            <img
+              src={i.img}
+              alt={i.title}
+              className="w-full h-32 object-cover rounded-lg"
+            />
+            <h3 className="font-semibold text-lg md:text-xl mt-3">{i.title}</h3>
+            <p className="text-sm text-[#a6adb2] mt-1">{i.desc}</p>
+          </motion.div>
+        ))}
       </div>
 
-      {/* Cards */}
-      <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <motion.div whileHover={{ y: -6 }} className="kap-card">
-          <div className="relative w-full h-56">
-            <Image
-              src="/images/screenshots/ai-assistant.png"
-              alt="AI Learning Assistant"
-              fill
-              className="rounded-md object-cover"
-              priority
-            />
-          </div>
-          <h3 className="mt-4 text-lg font-semibold">AI Learning Assistant</h3>
-          <p className="text-[#9aa0a6] mt-2">
-            See trends, track progress, and celebrate wins.
-          </p>
-        </motion.div>
-
-        <motion.div whileHover={{ y: -6 }} className="kap-card">
-          <div className="relative w-full h-56">
-            <Image
-              src="/images/screenshots/workshops.png"
-              alt="Workshops"
-              fill
-              className="rounded-md object-cover"
-            />
-          </div>
-          <h3 className="mt-4 text-lg font-semibold">Workshops</h3>
-          <p className="text-[#9aa0a6] mt-2">
-            Join live sessions or host your own.
-          </p>
-        </motion.div>
-
-        <motion.div whileHover={{ y: -6 }} className="kap-card">
-          <div className="relative w-full h-56">
-            <Image
-              src="/images/screenshots/notes.png"
-              alt="Collaborative Notes"
-              fill
-              className="rounded-md object-cover"
-            />
-          </div>
-          <h3 className="mt-4 text-lg font-semibold">Collaborative Notes</h3>
-          <p className="text-[#9aa0a6] mt-2">
-            Take and share notes instantly with peers.
-          </p>
-        </motion.div>
-
-        <motion.div whileHover={{ y: -6 }} className="kap-card">
-          <div className="relative w-full h-56">
-            <Image
-              src="/images/screenshots/leaderboard.png"
-              alt="Leaderboard"
-              fill
-              className="rounded-md object-cover"
-            />
-          </div>
-          <h3 className="mt-4 text-lg font-semibold">Leaderboard</h3>
-          <p className="text-[#9aa0a6] mt-2">
-            See trends, track progress, and celebrate wins.
-          </p>
-        </motion.div>
-      </div>
-
-      {/* CTA button */}
-      <div className="mt-12 text-center">
+      {/* Explore Button */}
+      <div className="mt-12">
         <a
           href="/explore"
           className="px-8 py-3 rounded-full bg-white text-black font-semibold shadow-md hover:shadow-lg transition"
@@ -105,6 +73,6 @@ export default function QuickStart() {
           Explore KAPment
         </a>
       </div>
-    </div>
+    </section>
   )
 }
