@@ -1,5 +1,5 @@
 'use client'
-import { MapPin, Globe, Users, Cpu, FileText, Presentation, MessageSquare, SignpostBig, FolderOpen, Star, Lock } from 'lucide-react'
+import { MapPin, Globe, Users, Cpu, FileText, Presentation, MessageSquare, Milestone, FolderOpen, Star, Lock } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 type Feature = {
@@ -17,7 +17,7 @@ const features: Feature[] = [
   { title: 'Collaborative Notes', desc: 'Co-create and organize knowledge together.', Icon: FileText, category: 'Tools' },
   { title: 'Workshops & Seminars', desc: 'Host or join interactive learning sessions.', Icon: Presentation, category: 'Tools' },
   { title: 'Live Collaboration', desc: 'Study, brainstorm, and co-create with peers in real time.', Icon: MessageSquare, category: 'Tools' },
-  { title: 'Personalized Journeys', desc: 'Discover topics and communities shaped around your goals.', Icon: Signpost, category: 'Tools' },
+  { title: 'Personalized Journeys', desc: 'Discover topics and communities shaped around your goals.', Icon: Milestone, category: 'Tools' },
   { title: 'Resource Hub', desc: 'Share notes, videos, and learning materials in one place.', Icon: FolderOpen, category: 'Tools' },
   { title: 'Growth & Recognition', desc: 'Earn credibility through your contributions and achievements.', Icon: Star, category: 'Trust' },
   { title: 'Privacy by Design', desc: 'Your data, your control — built with trust at the core.', Icon: Lock, category: 'Trust' }
