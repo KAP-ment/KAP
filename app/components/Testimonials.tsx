@@ -1,9 +1,9 @@
 import Image from 'next/image'
 
 const testimonials = [
-  { name: 'Ananya', role: 'University Student', quote: 'KAPment helped me stay consistent with my study. The KAP Score keeps me motivated like never before.', avatar: '/images/avatars/ananya.jpg' },
-  { name: 'Ravi', role: 'Physics Tutor', quote: 'The workshops feature makes it so easy to connect with students, both locally and globally.', avatar: '/images/avatars/ravi.jpg' },
-  { name: 'Sarah', role: 'Study Partner & Mentor', quote: 'Our study group found a home on KAPment — It feels safe, collaborative, and fun.', avatar: '/images/avatars/sarah.jpg' }
+  { name: 'Ananya', role: 'University Student', quote: 'KAPment helped me stay consistent with my study. The KAP Score keeps me motivated like never before.', avatar: '/images/screenshots/avatar1.jpg' },
+  { name: 'Ravi', role: 'Physics Tutor', quote: 'The workshops feature makes it so easy to connect with students, both locally and globally.', avatar: '/images/screenshots/avatar2.jpg' },
+  { name: 'Sarah', role: 'Study Partner & Mentor', quote: 'Our study group found a home on KAPment — It feels safe, collaborative, and fun.', avatar: '/images/screenshots/avatar3.jpg' }
 ]
 
 export default function Testimonials() {
