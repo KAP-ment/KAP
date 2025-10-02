@@ -34,7 +34,7 @@ export default function QuickStart() {
         </motion.div>
 
         <motion.div whileHover={{ y: -6 }} className="kap-card">
-          <Image src="/images/screenshots/workshop.png" alt="Workshops" width={400} height={240} className="rounded-md" />
+          <Image src="/images/screenshots/workshops.png" alt="Workshops" width={400} height={240} className="rounded-md" />
           <h3 className="mt-4 text-lg font-semibold">Workshops</h3>
           <p className="text-[#9aa0a6] mt-2">Join live sessions or host your own.</p>
         </motion.div>
