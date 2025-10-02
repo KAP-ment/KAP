@@ -43,7 +43,6 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold">Social</h4>
             <div className="mt-3 flex items-center gap-3">
-              {/* Change social links here: app/components/Footer.tsx */}
               <a aria-label="Instagram" href="https://www.instagram.com/kap.ment?igsh=MTZmOHRjeXBxemhxYQ==" className="p-2 rounded-md bg-white/3"><FaInstagram size={18} /></a>
               <a aria-label="LinkedIn" href="#" className="p-2 rounded-md bg-white/3"><FaLinkedin size={18} /></a>
               <a aria-label="Twitter" href="#" className="p-2 rounded-md bg-white/3"><FaXTwitter size={18} /></a>
