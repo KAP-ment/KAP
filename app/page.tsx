@@ -1,4 +1,5 @@
 import Hero from './components/Hero'
+import GetStarted from './components/GetStarted'
 import Features from './components/Features'
 import CoreValues from './components/CoreValues'
 import QuickStart from './components/QuickStart'
@@ -9,6 +10,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <section id="getstarted">GetStarted</section>
       <section id="features"><Features /></section>
       <section id="core-values"><CoreValues /></section>
       <section id="quick-start"><QuickStart /></section>
