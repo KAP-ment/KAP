@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
           <div className="col-span-1">
-            <img src="/images/og-image.png" alt="KAPment" className="h-10" />
+            <img src="/images/logo.png" alt="KAPment" className="h-10" />
             <p className="mt-4 text-[#9aa0a6]">Empowering learners worldwide.</p>
           </div>
 
