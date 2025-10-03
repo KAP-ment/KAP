@@ -10,8 +10,8 @@ const isLoggedIn = false
 // ✅ Feature list (12 features)
 const features = [
   {
-    id: "local-tutor-match",
-    title: "Local Tutor Match",
+    id: "tutor-match",
+    title: "Tutor Match",
     description: "Find trusted tutors nearby—online or offline.",
     category: "Community",
     link: "/tutors",
@@ -50,6 +50,13 @@ const features = [
     description: "Host or join interactive learning sessions.",
     category: "Tools",
     link: "/workshops",
+  },
+  {
+    id: "kapmentfeed",
+    title: "KAPment Feed",
+    description: "A subject-based feed that brings together discussions, resources, and peer insights—all in one organized space.",
+    category: "Tools",
+    link: "/collaboration",
   },
   {
     id: "live-collaboration",
