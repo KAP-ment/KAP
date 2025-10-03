@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { ChevronDown, ChevronUp } from "lucide-react"
 
-// ✅ Dummy login check (replace with your real auth system later)
+// ✅ Dummy login check (replace with real auth later)
 const isLoggedIn = false
 
 // ✅ Feature list (12 features)
@@ -100,23 +100,27 @@ export default function LearnMorePage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Hero / Ecosystem */}
+      {/* ================= HERO ================= */}
       <section className="flex flex-col items-center justify-center py-24 text-center">
-        <h1 className="text-5xl font-bold mb-4">Ecosystem</h1>
+        <h1 className="text-6xl font-bold mb-4">Ecosystem</h1>
         <p className="text-xl text-gray-400 max-w-2xl">
           New ways to learn, connect, and grow with tools designed for you.
         </p>
       </section>
 
-      {/* Feature Sections with Mockups */}
+      {/* ================= FEATURE SECTIONS ================= */}
       <section className="py-24 px-6 max-w-6xl mx-auto">
-        {/* Example: Find Your Tutor */}
+        {/* Find Your Tutor */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-32">
           <div>
-            <h2 className="text-4xl font-bold mb-4">Find Your Tutor</h2>
-            <p className="text-gray-400 mb-6">
-              Discover trusted tutors in your city for offline sessions or connect online
-              with mentors worldwide. Tailored learning experiences that fit your style.
+            <h2 className="text-5xl font-bold mb-6">Find Your Tutor</h2>
+            <p className="text-lg text-gray-400 mb-8 leading-relaxed">
+              Learning starts with the right guide. With KAPment, you can discover trusted tutors 
+              in your own city for offline sessions or connect online with mentors worldwide. 
+              Whether you're preparing for competitive exams, learning a new language, 
+              or just need extra help, KAPment ensures you find someone who fits your learning style. 
+              It’s more than just a list of names — it’s a trusted ecosystem where learners 
+              meet mentors with transparency, credibility, and care.
             </p>
             <button
               onClick={() => handleRedirect("/tutors")}
@@ -125,18 +129,22 @@ export default function LearnMorePage() {
               Try Now
             </button>
           </div>
-          <div className="bg-gray-900 w-full h-80 flex items-center justify-center rounded-xl">
-            <span className="text-gray-500">[ Placeholder for Tutor Mockup ]</span>
+          <div className="flex justify-center md:justify-end">
+            <div className="relative w-80 h-56 md:w-[420px] md:h-[280px]">
+              <div className="w-full h-full bg-gray-800 rounded-2xl shadow-2xl flex items-center justify-center text-gray-500">
+                [ Laptop Mockup Placeholder ]
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Workshops */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-32">
           <div>
-            <h2 className="text-4xl font-bold mb-4">Workshops</h2>
-            <p className="text-gray-400 mb-6">
-              Join or host live sessions — study groups, expert talks, or deep-dives.
-              Learning together makes it interactive and fun.
+            <h2 className="text-5xl font-bold mb-6">Workshops</h2>
+            <p className="text-lg text-gray-400 mb-8 leading-relaxed">
+              Join or host live sessions — study groups, expert talks, or deep-dives. 
+              Learning together makes it interactive, collaborative, and fun.
             </p>
             <button
               onClick={() => handleRedirect("/workshops")}
@@ -145,18 +153,23 @@ export default function LearnMorePage() {
               Join a Workshop
             </button>
           </div>
-          <div className="bg-gray-900 w-full h-80 flex items-center justify-center rounded-xl">
-            <span className="text-gray-500">[ Placeholder for Workshops Mockup ]</span>
+          <div className="flex justify-center md:justify-end">
+            <div className="relative w-72 h-72 md:w-[380px] md:h-[380px]">
+              <div className="w-full h-full bg-gray-800 rounded-2xl shadow-2xl flex items-center justify-center text-gray-500">
+                [ Tablet Mockup Placeholder ]
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Community */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-32">
           <div>
-            <h2 className="text-4xl font-bold mb-4">Community</h2>
-            <p className="text-gray-400 mb-6">
-              Find and join communities tailored to your interests. Share, discuss, and
-              grow with fellow learners.
+            <h2 className="text-5xl font-bold mb-6">Community</h2>
+            <p className="text-lg text-gray-400 mb-8 leading-relaxed">
+              Find and join communities tailored to your interests. 
+              Share, discuss, and connect with fellow learners through 
+              posts, events, and projects.
             </p>
             <button
               onClick={() => handleRedirect("/community")}
@@ -165,17 +178,23 @@ export default function LearnMorePage() {
               Join Community
             </button>
           </div>
-          <div className="bg-gray-900 w-full h-80 flex items-center justify-center rounded-xl">
-            <span className="text-gray-500">[ Placeholder for Community Mockup ]</span>
+          <div className="flex justify-center md:justify-end">
+            <div className="relative w-72 h-72 md:w-[380px] md:h-[380px]">
+              <div className="w-full h-full bg-gray-800 rounded-2xl shadow-2xl flex items-center justify-center text-gray-500">
+                [ Community Mockup Placeholder ]
+              </div>
+            </div>
           </div>
         </div>
 
         {/* AI Assistant */}
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-4xl font-bold mb-4">AI Assistant</h2>
-            <p className="text-gray-400 mb-6">
-              Get focused answers, recommendations, and personalized help when you need it most.
+            <h2 className="text-5xl font-bold mb-6">AI Assistant</h2>
+            <p className="text-lg text-gray-400 mb-8 leading-relaxed">
+              Get focused answers, tailored recommendations, 
+              and personalized help when you need it most. 
+              The AI Learning Assistant keeps you on track and saves time.
             </p>
             <button
               onClick={() => handleRedirect("/ai-assistant")}
@@ -184,13 +203,17 @@ export default function LearnMorePage() {
               Use AI Assistant
             </button>
           </div>
-          <div className="bg-gray-900 w-full h-80 flex items-center justify-center rounded-xl">
-            <span className="text-gray-500">[ Placeholder for AI Assistant Mockup ]</span>
+          <div className="flex justify-center md:justify-end">
+            <div className="relative w-64 h-80 md:w-[320px] md:h-[420px]">
+              <div className="w-full h-full bg-gray-800 rounded-2xl shadow-2xl flex items-center justify-center text-gray-500">
+                [ Phone Mockup Placeholder ]
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Features Grid (Desktop) */}
+      {/* ================= FEATURES GRID (Desktop) ================= */}
       <section className="hidden md:block py-24 px-6 max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold text-center mb-12">Everything in One Place</h2>
         <div className="grid grid-cols-3 gap-6">
@@ -210,7 +233,7 @@ export default function LearnMorePage() {
         </div>
       </section>
 
-      {/* Features Accordion (Mobile) */}
+      {/* ================= FEATURES ACCORDION (Mobile) ================= */}
       <section className="md:hidden py-24 px-4">
         <h2 className="text-2xl font-bold text-center mb-8">Everything in One Place</h2>
         <div className="space-y-4">
@@ -245,7 +268,7 @@ export default function LearnMorePage() {
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* ================= FINAL CTA ================= */}
       <section className="text-center py-24">
         <h2 className="text-3xl font-bold mb-4">Ready to Start Your Journey?</h2>
         <p className="text-gray-400 mb-6">Sign up and unlock the full ecosystem today.</p>
@@ -258,4 +281,4 @@ export default function LearnMorePage() {
       </section>
     </div>
   )
-}
+    }
