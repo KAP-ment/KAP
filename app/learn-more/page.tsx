@@ -1,435 +1,261 @@
-/* Production-ready Next.js (App Router) React page for /learn-more
-
-Tailwind CSS utility classes assumed
-shadcn/ui Button/Card primitives are referenced (replace with your implementations when needed)
-lucide-react used for icons
-
-Files bundled into this single React component file for convenience. 
-When you copy into your project, split into separate files as desired.
-*/
-
 'use client'
 
-import React, { useCallback } from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import {
-  Users,
-  Globe,
-  BookOpen,
-  Sparkles,
-  Video,
-  MessageCircle,
-  Folder,
-  ShieldCheck,
-  Calendar,
-  Zap,
-  Award,
-  MapPin,
-  Search,
-  ChevronDown,
-} from 'lucide-react'
+import { useState } from "react"
+import { ChevronDown, ChevronUp } from "lucide-react"
 
-// --- Helper: Feature definitions ---
-const FEATURES = [
+// ✅ Dummy login check (replace with your real auth system later)
+const isLoggedIn = false
+
+// ✅ Feature list (12 features)
+const features = [
   {
-    id: 'local-tutor',
-    title: 'Local Tutor Match',
-    desc: 'Find trusted tutors nearby — online or offline.',
-    icon: MapPin,
-    category: 'Community',
+    id: "local-tutor-match",
+    title: "Local Tutor Match",
+    description: "Find trusted tutors nearby—online or offline.",
+    category: "Community",
+    link: "/tutors",
   },
   {
-    id: 'global-network',
-    title: 'Global Network',
-    desc: 'Connect with learners and mentors worldwide.',
-    icon: Globe,
-    category: 'Community',
+    id: "global-network",
+    title: "Global Network",
+    description: "Connect with learners and mentors worldwide.",
+    category: "Community",
+    link: "/network",
   },
   {
-    id: 'community-spaces',
-    title: 'Community Spaces',
-    desc: 'Safe, learner-first spaces to share and grow.',
-    icon: Users,
-    category: 'Community',
+    id: "community-spaces",
+    title: "Community Spaces",
+    description: "Safe, learner-first spaces to share and grow.",
+    category: "Community",
+    link: "/community",
   },
   {
-    id: 'ai-learning-guide',
-    title: 'AI Learning Guide',
-    desc: 'Smart help with insights, summaries, and tips.',
-    icon: Zap,
-    category: 'Community',
+    id: "ai-learning-guide",
+    title: "AI Learning Guide",
+    description: "Smart help with insights, summaries, and tips.",
+    category: "Tools",
+    link: "/ai-assistant",
   },
   {
-    id: 'collaborative-notes',
-    title: 'Collaborative Notes',
-    desc: 'Co-create and organize knowledge together.',
-    icon: BookOpen,
-    category: 'Tools',
+    id: "collaborative-notes",
+    title: "Collaborative Notes",
+    description: "Co-create and organize knowledge together.",
+    category: "Tools",
+    link: "/notes",
   },
   {
-    id: 'workshops-seminars',
-    title: 'Workshops & Seminars',
-    desc: 'Host or join interactive learning sessions.',
-    icon: Video,
-    category: 'Tools',
+    id: "workshops",
+    title: "Workshops & Seminars",
+    description: "Host or join interactive learning sessions.",
+    category: "Tools",
+    link: "/workshops",
   },
   {
-    id: 'live-collaboration',
-    title: 'Live Collaboration',
-    desc: 'Study, brainstorm, and co-create with peers.',
-    icon: MessageCircle,
-    category: 'Tools',
+    id: "live-collaboration",
+    title: "Live Collaboration",
+    description: "Study, brainstorm, and co-create with peers in real time.",
+    category: "Tools",
+    link: "/collaboration",
   },
   {
-    id: 'personalized-journeys',
-    title: 'Personalized Journeys',
-    desc: 'Discover topics and communities shaped around your goals.',
-    icon: Sparkles,
-    category: 'Tools',
+    id: "personalized-journeys",
+    title: "Personalized Journeys",
+    description: "Discover topics and communities shaped around your goals.",
+    category: "Tools",
+    link: "/journeys",
   },
   {
-    id: 'resource-hub',
-    title: 'Resource Hub',
-    desc: 'Share notes, videos, and learning materials in one place.',
-    icon: Folder,
-    category: 'Tools',
+    id: "resource-hub",
+    title: "Resource Hub",
+    description: "Share notes, videos, and learning materials in one place.",
+    category: "Tools",
+    link: "/resources",
   },
   {
-    id: 'growth-recognition',
-    title: 'Growth & Recognition',
-    desc: 'Earn credibility through contributions and achievements.',
-    icon: Award,
-    category: 'Trust',
+    id: "growth-recognition",
+    title: "Growth & Recognition",
+    description: "Earn credibility through your contributions.",
+    category: "Trust",
+    link: "/recognition",
   },
   {
-    id: 'privacy-by-design',
-    title: 'Privacy by Design',
-    desc: 'Your data, your control — built with trust at the core.',
-    icon: ShieldCheck,
-    category: 'Trust',
-  },
-  {
-    id: 'other-tools',
-    title: 'Explore More Tools',
-    desc: 'Tools to help you study smarter and collaborate better.',
-    icon: Search,
-    category: 'Tools',
+    id: "privacy",
+    title: "Privacy by Design",
+    description: "Your data, your control—built with trust at the core.",
+    category: "Trust",
+    link: "/privacy",
   },
 ]
 
-// --- Placeholder auth checker (replace with your real auth) ---
-function isAuthenticated(): boolean {
-  if (typeof window === 'undefined') return false
-  try {
-    return Boolean(localStorage.getItem('kap_token'))
-  } catch (e) {
-    return false
-  }
-}
-
-// --- Helper hook: navigate with auth redirect ---
-function useAuthNavigate() {
-  const router = useRouter()
-  return useCallback(
-    (target: string) => {
-      if (isAuthenticated()) {
-        router.push(target)
-      } else {
-        const url = `/signup?redirect=${encodeURIComponent(target)}`
-        router.push(url)
-      }
-    },
-    [router],
-  )
-}
-
-// --- Small UI primitives ---
-function CTAButton({
-  children,
-  onClick,
-  variant = 'solid',
-}: {
-  children: React.ReactNode
-  onClick?: () => void
-  variant?: 'solid' | 'outline'
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className={`rounded-2xl px-6 py-3 font-medium transition focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
-        variant === 'solid'
-          ? 'bg-indigo-600 text-white hover:bg-indigo-700'
-          : 'bg-transparent border border-white/60 text-white/90 hover:bg-white/30'
-      }`}
-    >
-      {children}
-    </button>
-  )
-}
-
-// --- Background component ---
-function PageBackground() {
-  return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
-    >
-      {/* base gradient */}
-      <div className="absolute inset-0 bg-black/100" />
-
-      {/* subtle vignette */}
-      <div
-        className="absolute inset-0 mix-blend-overlay opacity-60"
-        style={{
-          background:
-            'radial-gradient(60% 40% at 10% 20%, rgba(15,23,42,0.35), transparent), radial-gradient(40% 30% at 90% 80%, rgba(99,102,241,0.05), transparent)',
-        }}
-      />
-
-      {/* dotted circular pattern */}
-      <svg
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30"
-        width="1200"
-        height="1200"
-        viewBox="0 0 1200 1200"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
-            <circle cx="1" cy="1" r="1" fill="rgba(59,130,246,0.06)" />
-          </pattern>
-          <mask id="circleMask">
-            <rect width="1200" height="1200" fill="black" />
-            <circle cx="600" cy="600" r="480" fill="white" />
-          </mask>
-        </defs>
-        <rect width="1200" height="1200" fill="url(#dots)" mask="url(#circleMask)" />
-      </svg>
-
-      {/* subtle top-left glow */}
-      <div
-        style={{
-          position: 'absolute',
-          left: '-20%',
-          top: '-10%',
-          width: '60%',
-          height: '60%',
-          filter: 'blur(160px)',
-          background:
-            'radial-gradient(circle at 20% 20%, rgba(79,70,229,0.08), transparent 20%)',
-        }}
-      />
-    </div>
-  )
-}
-
-// --- Desktop Feature Card ---
-function FeatureCard({
-  feature,
-  onClick,
-}: {
-  feature: (typeof FEATURES)[0]
-  onClick: () => void
-}) {
-  const Icon = feature.icon as any
-  return (
-    <button
-      onClick={onClick}
-      className="group text-left w-full rounded-2xl p-6 shadow-lg hover:shadow-xl bg-white/5 backdrop-blur-sm transition focus:outline-none focus:ring-2 focus:ring-indigo-500"
-    >
-      <div className="flex items-start gap-4">
-        <div className="h-10 w-10 rounded-lg bg-white/10 flex items-center justify-center">
-          <Icon className="h-5 w-5 text-white/90" />
-        </div>
-        <div className="flex-1">
-          <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
-          <p className="mt-2 text-sm text-white/70">{feature.desc}</p>
-          <div className="mt-4 text-xs text-white/50">
-            Category: {feature.category}
-          </div>
-        </div>
-      </div>
-    </button>
-  )
-}
-
-// --- Mobile Feature List Item ---
-function FeatureListItem({
-  feature,
-  onClick,
-}: {
-  feature: (typeof FEATURES)[0]
-  onClick: () => void
-}) {
-  const Icon = feature.icon as any
-  return (
-    <button
-      onClick={onClick}
-      className="w-full flex items-center gap-4 p-5 rounded-2xl bg-white/5 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-    >
-      <div className="h-10 w-10 rounded-md bg-white/10 flex items-center justify-center">
-        <Icon className="h-5 w-5 text-white/90" />
-      </div>
-      <div className="flex-1 text-left">
-        <div className="text-base font-semibold text-white">{feature.title}</div>
-      </div>
-      <ChevronDown className="h-5 w-5 text-white/70" />
-    </button>
-  )
-}
-
-// --- Main Page ---
 export default function LearnMorePage() {
-  const router = useRouter()
-  const navigate = useAuthNavigate()
+  const [openAccordion, setOpenAccordion] = useState<number | null>(null)
 
-  const goTo = (target: string) => {
-    if (target.startsWith('/')) {
-      navigate(target)
+  const handleRedirect = (link: string) => {
+    if (isLoggedIn) {
+      window.location.href = link
     } else {
-      router.push(target)
+      window.location.href = "/signup"
     }
   }
 
-  const onFeatureClick = (slug: string) => {
-    const target = `/about#${slug}`
-    navigate(target)
-  }
-
   return (
-    <div className="relative min-h-screen text-white">
-      <PageBackground />
+    <div className="min-h-screen bg-black text-white">
+      {/* Hero / Ecosystem */}
+      <section className="flex flex-col items-center justify-center py-24 text-center">
+        <h1 className="text-5xl font-bold mb-4">Ecosystem</h1>
+        <p className="text-xl text-gray-400 max-w-2xl">
+          New ways to learn, connect, and grow with tools designed for you.
+        </p>
+      </section>
 
-      <main className="max-w-7xl mx-auto px-6 py-16">
-        {/* Hero */}
-        <section className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">
-            Ecosystem
-          </h1>
-          <p className="mt-4 text-lg text-white/70 max-w-3xl mx-auto">
-            New ways to learn, connect, and grow with tools designed for you.
-          </p>
-        </section>
-
-        {/* Tutor section */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center mb-20">
-          <div className="md:col-span-6">
-            <h2 className="text-4xl font-bold">Find Your Tutor</h2>
-            <p className="mt-4 text-white/70 leading-relaxed">
-              Learning starts with the right guide. With KAPment, you can discover
-              trusted tutors in your city for offline sessions or connect online with
-              mentors worldwide. Find someone who fits your learning style.
+      {/* Feature Sections with Mockups */}
+      <section className="py-24 px-6 max-w-6xl mx-auto">
+        {/* Example: Find Your Tutor */}
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-32">
+          <div>
+            <h2 className="text-4xl font-bold mb-4">Find Your Tutor</h2>
+            <p className="text-gray-400 mb-6">
+              Discover trusted tutors in your city for offline sessions or connect online
+              with mentors worldwide. Tailored learning experiences that fit your style.
             </p>
-            <div className="mt-6 flex gap-4">
-              <CTAButton onClick={() => goTo('/tutors')}>Try Now</CTAButton>
-              <CTAButton variant="outline" onClick={() => goTo('/signup')}>
-                Sign up
-              </CTAButton>
-            </div>
+            <button
+              onClick={() => handleRedirect("/tutors")}
+              className="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-lg font-semibold"
+            >
+              Try Now
+            </button>
           </div>
-          <div className="md:col-span-6 flex justify-center">
-            {/* mockup */}
-            <div className="w-full max-w-xl rounded-2xl overflow-hidden bg-gradient-to-b from-black/70 via-black/60 to-black/50 p-6 shadow-2xl border border-white/10">
-              <div className="text-lg font-semibold mb-4">Find Your Tutor</div>
-              <div className="space-y-4">
-                <div className="rounded-md bg-white/5 p-3">Search · Filter · Trusted</div>
-                <div className="rounded-md bg-white/10 p-3 grid grid-cols-6 gap-3">
-                  <div className="col-span-1 rounded bg-white/20 h-12" />
-                  <div className="col-span-5 rounded bg-white/10 h-12" />
-                </div>
-                <div className="rounded-md bg-white/5 p-3">
-                  Tutor profile previews (name, short bio)
-                </div>
-              </div>
-            </div>
+          <div className="bg-gray-900 w-full h-80 flex items-center justify-center rounded-xl">
+            <span className="text-gray-500">[ Placeholder for Tutor Mockup ]</span>
           </div>
-        </section>
-
-        {/* Community */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center mb-20">
-          <div className="md:col-span-6 order-2 md:order-1">
-            <div className="text-4xl font-bold">Community</div>
-            <p className="mt-4 text-white/70">
-              Find and join communities tailored to your interests. Share, discuss, and
-              connect with fellow learners through posts and visual insights.
-            </p>
-            <div className="mt-6">
-              <CTAButton onClick={() => goTo('/community')}>
-                Join the Community
-              </CTAButton>
-            </div>
-          </div>
-          <div className="md:col-span-6 order-1 md:order-2 flex justify-center">
-            <div className="w-full max-w-lg rounded-2xl overflow-hidden bg-gradient-to-b from-black/70 to-black/60 p-6 shadow-2xl border border-white/10">
-              <div className="text-lg font-semibold mb-4">Communities</div>
-              <div className="rounded-md bg-white/5 p-4">
-                Community dashboard preview (posts, trending)
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Features */}
-        <section className="mb-24">
-          <h3 className="text-3xl font-bold mb-6">What’s inside the ecosystem</h3>
-
-          {/* Mobile list */}
-          <div className="md:hidden space-y-4">
-            {FEATURES.map((f) => (
-              <FeatureListItem
-                key={f.id}
-                feature={f}
-                onClick={() => onFeatureClick(f.id)}
-              />
-            ))}
-          </div>
-
-          {/* Desktop grid */}
-          <div className="hidden md:grid grid-cols-3 gap-6">
-            {FEATURES.map((f) => (
-              <FeatureCard
-                key={f.id}
-                feature={f}
-                onClick={() => onFeatureClick(f.id)}
-              />
-            ))}
-          </div>
-        </section>
+        </div>
 
         {/* Workshops */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center mb-28">
-          <div className="md:col-span-6">
-            <h3 className="text-3xl font-bold">Workshops</h3>
-            <p className="mt-4 text-white/70">
-              Learning together is powerful. With KAPment Workshops, you can join or
-              host live sessions that bring learners closer — whether it's a quick study
-              group, a subject deep-dive, or an expert-led class.
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-32">
+          <div>
+            <h2 className="text-4xl font-bold mb-4">Workshops</h2>
+            <p className="text-gray-400 mb-6">
+              Join or host live sessions — study groups, expert talks, or deep-dives.
+              Learning together makes it interactive and fun.
             </p>
-            <div className="mt-6">
-              <CTAButton onClick={() => goTo('/workshops')}>
-                Join a Workshop →
-              </CTAButton>
-            </div>
+            <button
+              onClick={() => handleRedirect("/workshops")}
+              className="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-lg font-semibold"
+            >
+              Join a Workshop
+            </button>
           </div>
-          <div className="md:col-span-6 flex justify-center">
-            <div className="w-full max-w-lg rounded-2xl overflow-hidden bg-gradient-to-b from-black/70 to-black/60 p-6 shadow-2xl border border-white/10">
-              <div className="text-lg font-semibold mb-4">Workshops & Events</div>
-              <div className="rounded-md bg-white/5 p-4">Event listing preview</div>
-            </div>
+          <div className="bg-gray-900 w-full h-80 flex items-center justify-center rounded-xl">
+            <span className="text-gray-500">[ Placeholder for Workshops Mockup ]</span>
           </div>
-        </section>
+        </div>
 
-        {/* Final CTA */}
-        <section className="text-center py-12">
-          <h3 className="text-3xl font-bold mb-4">Ready to start?</h3>
-          <p className="text-white/70 mb-6">
-            Create your free account and join a community of learners building together.
-          </p>
-          <CTAButton onClick={() => goTo('/signup')}>Create Free Account</CTAButton>
-        </section>
-      </main>
+        {/* Community */}
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-32">
+          <div>
+            <h2 className="text-4xl font-bold mb-4">Community</h2>
+            <p className="text-gray-400 mb-6">
+              Find and join communities tailored to your interests. Share, discuss, and
+              grow with fellow learners.
+            </p>
+            <button
+              onClick={() => handleRedirect("/community")}
+              className="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-lg font-semibold"
+            >
+              Join Community
+            </button>
+          </div>
+          <div className="bg-gray-900 w-full h-80 flex items-center justify-center rounded-xl">
+            <span className="text-gray-500">[ Placeholder for Community Mockup ]</span>
+          </div>
+        </div>
+
+        {/* AI Assistant */}
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-4xl font-bold mb-4">AI Assistant</h2>
+            <p className="text-gray-400 mb-6">
+              Get focused answers, recommendations, and personalized help when you need it most.
+            </p>
+            <button
+              onClick={() => handleRedirect("/ai-assistant")}
+              className="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-lg font-semibold"
+            >
+              Use AI Assistant
+            </button>
+          </div>
+          <div className="bg-gray-900 w-full h-80 flex items-center justify-center rounded-xl">
+            <span className="text-gray-500">[ Placeholder for AI Assistant Mockup ]</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Grid (Desktop) */}
+      <section className="hidden md:block py-24 px-6 max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold text-center mb-12">Everything in One Place</h2>
+        <div className="grid grid-cols-3 gap-6">
+          {features.map((f, i) => (
+            <div
+              key={f.id}
+              className="bg-gray-900 p-6 rounded-xl hover:bg-gray-800 cursor-pointer transition"
+              onClick={() => handleRedirect(f.link)}
+            >
+              <h3 className="text-lg font-semibold mb-2">
+                {i + 1}. {f.title}
+              </h3>
+              <p className="text-gray-400 text-sm mb-2">{f.description}</p>
+              <span className="text-xs text-gray-500">Category: {f.category}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Features Accordion (Mobile) */}
+      <section className="md:hidden py-24 px-4">
+        <h2 className="text-2xl font-bold text-center mb-8">Everything in One Place</h2>
+        <div className="space-y-4">
+          {features.map((f, i) => (
+            <div
+              key={f.id}
+              className="bg-gray-900 p-4 rounded-xl cursor-pointer"
+              onClick={() => handleRedirect(f.link)}
+            >
+              <div
+                className="flex justify-between items-center"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setOpenAccordion(openAccordion === i ? null : i)
+                }}
+              >
+                <span className="font-medium">{f.title}</span>
+                {openAccordion === i ? (
+                  <ChevronUp className="w-5 h-5" />
+                ) : (
+                  <ChevronDown className="w-5 h-5" />
+                )}
+              </div>
+              {openAccordion === i && (
+                <div className="mt-3 text-sm text-gray-400">
+                  <p>{f.description}</p>
+                  <p className="text-xs text-gray-500 mt-1">Category: {f.category}</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="text-center py-24">
+        <h2 className="text-3xl font-bold mb-4">Ready to Start Your Journey?</h2>
+        <p className="text-gray-400 mb-6">Sign up and unlock the full ecosystem today.</p>
+        <button
+          onClick={() => handleRedirect("/dashboard")}
+          className="px-8 py-4 bg-blue-600 hover:bg-blue-500 rounded-lg font-semibold text-lg"
+        >
+          Try Now
+        </button>
+      </section>
     </div>
   )
-                         }
+}
