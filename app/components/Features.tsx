@@ -15,7 +15,7 @@ type Feature = {
 }
 
 const features: Feature[] = [
-  { title: 'Local Tutor Match', desc: 'Find trusted tutors nearby—online or offline.', Icon: MapPin, category: 'Community' },
+  { title: 'Tutor Match', desc: 'Find trusted tutors nearby—online or offline.', Icon: MapPin, category: 'Community' },
   { title: 'Global Network', desc: 'Connect with learners and mentors worldwide.', Icon: Globe, category: 'Community' },
   { title: 'Community Spaces', desc: 'Safe, learner-first spaces to share and grow.', Icon: Users, category: 'Community' },
   { title: 'AI Learning Guide', desc: 'Smart help with insights, summaries, and tips.', Icon: Cpu, category: 'Tools' },
