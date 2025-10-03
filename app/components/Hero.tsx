@@ -29,7 +29,7 @@ export default function Hero() {
           <Link href="/signup">
             <a className="rounded-lg bg-white text-black px-6 py-3 font-semibold shadow-md hover:brightness-95 focus:ring-2 focus:ring-offset-2">Get Started</a>
           </Link>
-          <a href="#features" className="rounded-lg border border-slate-700 px-6 py-3 text-slate-200">Learn More</a>
+          <a href="/learn-more" className="rounded-lg border border-slate-700 px-6 py-3 text-slate-200">Learn More</a>
         </div>
       </div>
 
