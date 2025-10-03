@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
 const items = [
-  { title: 'Tutot Match', desc: 'Find the tutor who fits your learning style.', img: '/images/showcase/tutor.png' },
+  { title: 'Tutot match', desc: 'Find the tutor who fits your learning style.', img: '/images/showcase/tutor.png' },
   { title: 'Collaborative Notes', desc: 'Take and share notes instantly.', img: '/images/showcase/notes.png' },
   { title: 'AI Learning Assistant', desc: 'See trends, track progress, and celebrate wins.', img: '/images/showcase/ai.png' },
   { title: 'Workshops', desc: 'Join live sessions or host your own.', img: '/images/screenshots/workshops.png' }
