@@ -13,7 +13,7 @@ export default function Logo({ width = 220, height = 220 }: { width?: number; he
       {/* The logo file should be at public/images/logo.svg */}
       <div style={{ width: width, height: height }} className="relative">
         <Image
-          src="/images/og-image.png"
+          src="/images/logo.png"
           alt="KAPment logo"
           width={width}
           height={height}
