@@ -24,8 +24,8 @@ export default function GetStarted() {
   }, [paused])
 
   return (
-    // 👇 only visible on lg+ screens
-    <section className="hidden lg:block container py-20 text-center">
+    // 👇 only visible on md (≥768px) and above
+    <section className="hidden md:block container py-20 text-center">
       <h2 className="text-3xl md:text-4xl font-bold">Get Started in Seconds</h2>
       <p className="mt-2 text-[#a6adb2]">Jump into learning with KAPment — quick, simple, personalized.</p>
 
