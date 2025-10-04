@@ -1,151 +1,197 @@
 'use client'
 
-import { BookOpen, Users, Brain, Rocket, Calendar, Target, MessageCircle, Star, Zap, Globe, Layers, GraduationCap } from "lucide-react"
+import { BookOpen, Users, Brain, Rocket, Target, MessageCircle, Star, Zap, Globe, Layers, GraduationCap } from "lucide-react"
 
 export default function AboutPage() {
   return (
-    <main className="px-6 sm:px-12 lg:px-24 py-16 space-y-24 text-slate-800">
-      
-      {/* Hero Section */}
-      <section className="text-center space-y-6">
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+    <main className="px-6 sm:px-12 lg:px-48 py-16 bg-slate-50 text-slate-800 leading-relaxed">
+
+      {/* HERO */}
+      <section className="text-center mb-20">
+        <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-slate-900">
           Learning, Reimagined for Everyone
         </h1>
-        <p className="text-lg sm:text-xl max-w-2xl mx-auto text-slate-600">
-          KAPment is built for students, professionals, and lifelong learners. 
-          This page tells our story, our vision, and the details behind every feature.
+        <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto">
+          Whether you're a student, tutor, or professional — KAPment is your space to learn, share, and grow.  
+          This is the story of how we’re building a connected world of learners.
         </p>
       </section>
 
-      {/* Our Story / Mission */}
+      {/* STORY */}
+      <section id="our-story" className="space-y-6 mb-20">
+        <h2 className="text-3xl font-semibold flex items-center gap-2"><BookOpen className="w-6 h-6 text-indigo-600" /> Our Story</h2>
+        <p>
+          The world of learning has become fragmented. Students juggle multiple apps, professionals are racing to upskill,
+          and lifelong learners often study in isolation. Traditional education moves too slow, while online tools feel disconnected.
+        </p>
+        <p>
+          KAPment was born from a simple belief: <strong>learning should be frictionless, human, and lifelong.</strong>
+          We’re building an ecosystem where everyone — students, professionals, freelancers, and mentors — can collaborate,
+          teach, and evolve together in one connected space.
+        </p>
+        <p>
+          Our mission is not just to teach; it’s to empower people to take control of their growth journeys.
+          Because in the age of AI and constant change, learning never really ends.
+        </p>
+      </section>
+
+      {/* GET STARTED */}
+      <section id="get-started" className="space-y-6 mb-20">
+        <h2 className="text-3xl font-semibold flex items-center gap-2"><Rocket className="w-6 h-6 text-indigo-600" /> Get Started in Seconds</h2>
+        <p>
+          Getting started with KAPment is effortless. We’ve made sure anyone can begin in minutes — no matter what they do.
+        </p>
+
+        <div className="space-y-3 pl-3 border-l-4 border-indigo-500">
+          <p><strong>1. Create Your Profile:</strong> Choose whether you’re a student, tutor, professional, or lifelong learner. Your profile shapes your journey inside KAPment.</p>
+          <p><strong>2. Choose Interests:</strong> Select your domains — from AI to design, medicine to finance, writing to law. There’s no limit to what you can explore.</p>
+          <p><strong>3. Explore the Ecosystem:</strong> Join communities, connect with mentors, post in the Feed, and use AI tools to boost your learning efficiency.</p>
+          <p><strong>4. Grow with Every Step:</strong> Earn trust, find opportunities, showcase your progress, and help others grow — all inside the same platform.</p>
+        </div>
+      </section>
+
+      {/* FEATURES */}
+      <section id="features" className="space-y-12 mb-20">
+        <h2 className="text-3xl font-semibold flex items-center gap-2"><Layers className="w-6 h-6 text-indigo-600" /> The 12 Features of KAPment</h2>
+        <p>
+          Each feature in KAPment exists to solve a real learning challenge — together they form a complete ecosystem for education, networking, and growth.
+        </p>
+
+        <div className="space-y-12">
+          {[
+            {
+              id: "tutor-match",
+              icon: Users,
+              title: "Tutor Match",
+              desc: "A trusted system that helps learners find verified tutors, coaches, or mentors instantly. Search by subject, skill, location, or price — powered by community ratings and AI filters."
+            },
+            {
+              id: "kapment-feed",
+              icon: MessageCircle,
+              title: "KAPment Feed",
+              desc: "A subreddit-style feed built for learning communities. Post questions, share notes, host polls, and discover discussions across thousands of topics — from coding to psychology."
+            },
+            {
+              id: "ai-assistant",
+              icon: Brain,
+              title: "AI Study Assistant",
+              desc: "Your personalized AI mentor that answers questions, generates quizzes, summarizes lessons, and builds tailored study plans — available 24/7 for learners and professionals."
+            },
+            {
+              id: "study-tools",
+              icon: BookOpen,
+              title: "Smart Study Tools",
+              desc: "All-in-one tools to organize notes, flashcards, references, and track progress — designed to simplify complex learning and retain information longer."
+            },
+            {
+              id: "groups",
+              icon: Users,
+              title: "Groups & Communities",
+              desc: "Join or create focused communities — study circles, industry guilds, or domain-based forums — for collaboration and peer learning."
+            },
+            {
+              id: "opportunities",
+              icon: Target,
+              title: "Opportunities",
+              desc: "A gateway to internships, freelance gigs, and industry challenges curated for your skill level. Grow your career while learning."
+            },
+            {
+              id: "showcase",
+              icon: Star,
+              title: "Showcase Profile",
+              desc: "Display your skills, achievements, and portfolio in one interactive profile. Let recruiters, collaborators, and mentors find you easily."
+            },
+            {
+              id: "collab",
+              icon: Zap,
+              title: "Collaboration Hub",
+              desc: "Find peers to work on live projects, case studies, or startups. Connect learners and professionals who share your goals."
+            },
+            {
+              id: "events",
+              icon: Globe,
+              title: "Events & Webinars",
+              desc: "Stay updated with live workshops, guest lectures, and webinars hosted by subject experts from around the world."
+            },
+            {
+              id: "resources",
+              icon: Layers,
+              title: "Resource Library",
+              desc: "A growing library of curated notes, research, templates, and study materials contributed by the KAPment community."
+            },
+            {
+              id: "certs",
+              icon: GraduationCap,
+              title: "Micro-Certifications",
+              desc: "Prove your skills with KAPment’s mini-certifications. Earn badges and credibility for completing projects or mastering skills."
+            },
+            {
+              id: "global",
+              icon: Globe,
+              title: "Global Network",
+              desc: "Connect with learners, mentors, and professionals across countries — collaborate beyond borders and learn globally."
+            }
+          ].map((f) => (
+            <div key={f.id} id={f.id}>
+              <h3 className="text-2xl font-semibold flex items-center gap-2 text-indigo-700">
+                <f.icon className="w-6 h-6" /> {f.title}
+              </h3>
+              <p className="mt-2 text-slate-600">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ECOSYSTEM */}
+      <section id="ecosystem" className="space-y-6 mb-20">
+        <h2 className="text-3xl font-semibold flex items-center gap-2"><Globe className="w-6 h-6 text-indigo-600" /> The KAPment Ecosystem</h2>
+        <p>
+          KAPment isn’t a single app — it’s an entire ecosystem designed to let people <strong>learn, connect, and grow</strong> seamlessly.  
+          Every feature fits into one of three core pillars:
+        </p>
+        <ul className="list-disc pl-6 space-y-2">
+          <li><strong>Learn:</strong> Access AI tools, personalized tutors, and curated study materials.</li>
+          <li><strong>Connect:</strong> Join communities, share experiences, and network with professionals.</li>
+          <li><strong>Grow:</strong> Earn credibility, build your portfolio, and access opportunities worldwide.</li>
+        </ul>
+      </section>
+
+      {/* WHY NOW */}
+      <section id="why-now" className="space-y-6 mb-20">
+        <h2 className="text-3xl font-semibold flex items-center gap-2"><Rocket className="w-6 h-6 text-indigo-600" /> Why Now?</h2>
+        <p>
+          The world is changing faster than ever. Traditional education struggles to keep pace with the speed of technology,
+          and professionals can no longer rely on degrees alone. AI, automation, and remote work have made learning a constant cycle.
+        </p>
+        <p>
+          KAPment was created to bridge this gap — a modern platform for modern learners.  
+          It’s where knowledge meets community, and education meets opportunity.
+        </p>
+      </section>
+
+      {/* ROADMAP */}
+      <section id="roadmap" className="space-y-6 mb-20">
+        <h2 className="text-3xl font-semibold flex items-center gap-2"><Target className="w-6 h-6 text-indigo-600" /> Our Roadmap</h2>
+        <ul className="list-disc pl-6 space-y-2">
+          <li><strong>2025:</strong> Launch core ecosystem — Tutor Match, Feed, AI Assistant, and Study Tools.</li>
+          <li><strong>2026:</strong> Expand into micro-certifications, challenges, and AI mentorship.</li>
+          <li><strong>2027:</strong> Build global partnerships and professional networks for verified growth.</li>
+          <li><strong>Beyond:</strong> Create the world’s largest connected learning ecosystem, open to everyone.</li>
+        </ul>
+      </section>
+
+      {/* ABOUT US */}
       <section className="space-y-6">
-        <h2 className="text-3xl font-semibold">Our Story</h2>
-        <p className="text-slate-600 leading-relaxed">
-          Education today is fragmented. Students face outdated systems, professionals 
-          struggle to keep up with changing skills, and self-learners often feel isolated.  
-          We built KAPment because we believe learning should be frictionless, 
-          accessible, and empowering for everyone.
+        <h2 className="text-3xl font-semibold flex items-center gap-2"><Users className="w-6 h-6 text-indigo-600" /> About Us</h2>
+        <p>
+          We’re not just a company; we’re a community of people who believe education should be democratized.  
+          We’ve been learners, mentors, and professionals — and we’ve all faced the same barriers:  
+          expensive courses, outdated systems, and isolation.
         </p>
-        <p className="text-slate-600 leading-relaxed">
-          Our mission is simple: create an ecosystem where students, tutors, and professionals 
-          can learn, connect, and grow together — regardless of where they come from.
+        <p>
+          That’s why KAPment exists — built by learners, for learners.  
+          Our goal is to create an ecosystem where anyone can share knowledge, find guidance, and grow — together.
         </p>
-      </section>
-
-      {/* Get Started in Seconds */}
-      <section id="get-started" className="space-y-10">
-        <h2 className="text-3xl font-semibold text-center">Get Started in Seconds</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            { icon: Users, title: "Create Profile", desc: "Sign up as learner, tutor, or professional in seconds." },
-            { icon: Layers, title: "Choose Interests", desc: "Pick from subjects, careers, and skills that excite you." },
-            { icon: Globe, title: "Explore Ecosystem", desc: "Join communities, post in the Feed, or search for tutors." },
-            { icon: Rocket, title: "Grow & Thrive", desc: "Learn smarter, connect with peers, and find new opportunities." }
-          ].map((step, i) => (
-            <div key={i} className="bg-white shadow-md rounded-2xl p-6 text-center space-y-3 hover:shadow-lg transition">
-              <step.icon className="mx-auto w-10 h-10 text-indigo-600" />
-              <h3 className="font-semibold">{step.title}</h3>
-              <p className="text-sm text-slate-500">{step.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 12 Features Grid */}
-      <section id="features" className="space-y-10">
-        <h2 className="text-3xl font-semibold text-center">The 12 Features of KAPment</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            { id: "tutor-match", icon: Users, title: "Tutor Match", desc: "Find trusted tutors or mentors in any subject or profession." },
-            { id: "kapment-feed", icon: MessageCircle, title: "KAPment Feed", desc: "Subreddit-style hub to share posts, doubts, and resources." },
-            { id: "ai-assistant", icon: Brain, title: "AI Study Assistant", desc: "Your personal AI mentor for instant help and custom quizzes." },
-            { id: "study-tools", icon: BookOpen, title: "Study Tools", desc: "Smart tools to organize notes, flashcards, and practice." },
-            { id: "groups", icon: Users, title: "Groups & Communities", desc: "Create or join study groups and professional circles." },
-            { id: "opportunities", icon: Target, title: "Opportunities", desc: "Discover internships, freelance gigs, or skill challenges." },
-            { id: "showcase", icon: Star, title: "Showcase Profile", desc: "Highlight skills, achievements, and connect with recruiters." },
-            { id: "collab", icon: Zap, title: "Collaboration Hub", desc: "Work together on projects, case studies, and peer-learning." },
-            { id: "events", icon: Calendar, title: "Events & Webinars", desc: "Join live sessions, workshops, and Q&As with experts." },
-            { id: "resources", icon: Layers, title: "Resource Library", desc: "Curated content, notes, and tools shared by community." },
-            { id: "certs", icon: GraduationCap, title: "Micro-Certifications", desc: "Earn badges and recognition for completing challenges." },
-            { id: "global", icon: Globe, title: "Global Network", desc: "Connect with learners and professionals worldwide." },
-          ].map((feature) => (
-            <div id={feature.id} key={feature.id} className="bg-white shadow-md rounded-2xl p-6 hover:shadow-lg transition">
-              <feature.icon className="w-8 h-8 text-indigo-600 mb-3" />
-              <h3 className="font-semibold text-lg">{feature.title}</h3>
-              <p className="text-sm text-slate-500">{feature.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Ecosystem Section */}
-      <section id="ecosystem" className="space-y-8">
-        <h2 className="text-3xl font-semibold text-center">The KAPment Ecosystem</h2>
-        <div className="grid sm:grid-cols-3 gap-6">
-          {[
-            { icon: BookOpen, title: "Learn", desc: "Access AI tools, tutors, and resources to accelerate growth." },
-            { icon: Users, title: "Connect", desc: "Engage with peers, professionals, and mentors across domains." },
-            { icon: Rocket, title: "Grow", desc: "Showcase your skills and unlock career or freelance opportunities." }
-          ].map((pillar, i) => (
-            <div key={i} className="bg-white shadow-md rounded-2xl p-6 text-center space-y-3 hover:shadow-lg transition">
-              <pillar.icon className="mx-auto w-10 h-10 text-indigo-600" />
-              <h3 className="font-semibold">{pillar.title}</h3>
-              <p className="text-sm text-slate-500">{pillar.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Why Now */}
-      <section id="why-now" className="space-y-6">
-        <h2 className="text-3xl font-semibold">Why Now?</h2>
-        <p className="text-slate-600 leading-relaxed">
-          The world is changing faster than traditional education can keep up.  
-          AI is reshaping jobs, industries are evolving daily, and learners 
-          need new ways to stay ahead. KAPment exists to bridge the gap — 
-          offering a community-driven, affordable, and future-ready way to learn.
-        </p>
-      </section>
-
-      {/* Roadmap */}
-      <section id="roadmap" className="space-y-8">
-        <h2 className="text-3xl font-semibold text-center">Our Roadmap</h2>
-        <div className="space-y-4 max-w-2xl mx-auto">
-          {[
-            { year: "2025", desc: "Beta launch with Tutor Match, Feed, and AI Assistant." },
-            { year: "2026", desc: "Introduce AI mentorship and micro-certifications." },
-            { year: "2027", desc: "Expand into global professional networks and opportunities." },
-            { year: "Beyond", desc: "Build the world’s largest ecosystem for lifelong learning." }
-          ].map((item, i) => (
-            <div key={i} className="flex items-center gap-4 bg-white shadow-md rounded-xl p-4 hover:shadow-lg transition">
-              <div className="text-indigo-600 font-bold text-lg">{item.year}</div>
-              <p className="text-slate-600">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* About Us (no id) */}
-      <section className="space-y-6">
-        <h2 className="text-3xl font-semibold">About Us</h2>
-        <p className="text-slate-600 leading-relaxed">
-          We’re learners first. KAPment was built by people who struggled with the same 
-          challenges you face: finding mentors, keeping up with new skills, and staying motivated.  
-          Instead of waiting for a solution, we created one. Our values are simple: 
-          learning is lifelong, knowledge should be accessible, and everyone can be both a teacher and a learner.
-        </p>
-      </section>
-
-      {/* Final CTA */}
-      <section className="text-center space-y-6">
-        <h2 className="text-3xl font-bold">Be Part of the Movement</h2>
-        <p className="text-slate-600 max-w-xl mx-auto">
-          KAPment isn’t just a platform — it’s a community.  
-          Join us and shape the future of learning, no matter who you are.
-        </p>
-        <button className="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 transition">
-          Join Early Access
-        </button>
       </section>
     </main>
   )
