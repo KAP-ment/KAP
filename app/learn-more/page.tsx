@@ -14,14 +14,14 @@ const features = [
     title: "Tutor Match",
     description: "Find trusted tutors nearby—online or offline.",
     category: "Community",
-    link: "/about",
+    link: "/about#tutor-match",
   },
   {
     id: "global-network",
     title: "Global Network",
     description: "Connect with learners and mentors worldwide.",
     category: "Community",
-    link: "/about",
+    link: "/about#global-network",
   },
   {
     id: "community-spaces",
