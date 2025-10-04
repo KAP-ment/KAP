@@ -1,4 +1,105 @@
-'use client'
+// ✅ Feature list (12 features with correct /about#ids)
+const features = [
+  {
+    id: "tutor-match",
+    title: "Tutor Match",
+    description: "Find trusted tutors nearby—online or offline.",
+    category: "Community",
+    link: "/about#tutor-match",
+  },
+  {
+    id: "kapment-feed",
+    title: "KAPment Feed",
+    description: "A subject-based feed that brings together discussions, resources, and peer insights—all in one organized space.",
+    category: "Community",
+    link: "/about#kapment-feed",
+  },
+  {
+    id: "ai-assistant",
+    title: "AI Study Assistant",
+    description: "Smart help with insights, summaries, and tips for your learning journey.",
+    category: "Tools",
+    link: "/about#ai-assistant",
+  },
+  {
+    id: "study-tools",
+    title: "Smart Study Tools",
+    description: "Organize notes, flashcards, references, and track progress in one place.",
+    category: "Tools",
+    link: "/about#study-tools",
+  },
+  {
+    id: "groups",
+    title: "Groups & Communities",
+    description: "Join or create focused communities for peer learning and collaboration.",
+    category: "Community",
+    link: "/about#groups",
+  },
+  {
+    id: "opportunities",
+    title: "Opportunities",
+    description: "Discover internships, gigs, and challenges curated for your skills.",
+    category: "Growth",
+    link: "/about#opportunities",
+  },
+  {
+    id: "showcase",
+    title: "Showcase Profile",
+    description: "Display achievements and portfolio in one interactive profile.",
+    category: "Growth",
+    link: "/about#showcase",
+  },
+  {
+    id: "collab",
+    title: "Collaboration Hub",
+    description: "Work on projects, case studies, or startups with peers worldwide.",
+    category: "Tools",
+    link: "/about#collab",
+  },
+  {
+    id: "events",
+    title: "Events & Webinars",
+    description: "Join workshops, lectures, and webinars hosted by experts globally.",
+    category: "Tools",
+    link: "/about#events",
+  },
+  {
+    id: "resources",
+    title: "Resource Library",
+    description: "Access curated notes, templates, and learning materials.",
+    category: "Tools",
+    link: "/about#resources",
+  },
+  {
+    id: "certs",
+    title: "Micro-Certifications",
+    description: "Prove your skills with badges and mini-certifications.",
+    category: "Growth",
+    link: "/about#certs",
+  },
+  {
+    id: "global",
+    title: "Global Network",
+    description: "Connect with mentors and learners across the world.",
+    category: "Community",
+    link: "/about#global",
+  },
+]
+
+export default function LearnMorePage() {
+  const [openAccordion, setOpenAccordion] = useState<number | null>(null)
+
+  // ✅ Always redirect (no login check for /about features)
+  const handleRedirect = (link: string) => {
+    window.location.href = link
+  }
+
+  return (
+    <div className="min-h-screen bg-black text-white">
+      {/* ...rest of your sections */}
+    </div>
+  )
+}'use client'
 
 import { useState } from "react"
 import { ChevronDown, ChevronUp } from "lucide-react"
@@ -11,103 +112,7 @@ const isLoggedIn = false
 const features = [
   {
     id: "tutor-match",
-    title: "Tutor Match",
-    description: "Find trusted tutors nearby—online or offline.",
-    category: "Community",
-    link: "/about#tutor-match",
-  },
-  {
-    id: "global-network",
-    title: "Global Network",
-    description: "Connect with learners and mentors worldwide.",
-    category: "Community",
-    link: "/about#global-network",
-  },
-  {
-    id: "community-spaces",
-    title: "Community Spaces",
-    description: "Safe, learner-first spaces to share and grow.",
-    category: "Community",
-    link: "/about",
-  },
-  {
-    id: "ai-learning-guide",
-    title: "AI Learning Guide",
-    description: "Smart help with insights, summaries, and tips.",
-    category: "Tools",
-    link: "/about",
-  },
-  {
-    id: "collaborative-notes",
-    title: "Collaborative Notes",
-    description: "Co-create and organize knowledge together.",
-    category: "Tools",
-    link: "/about",
-  },
-  {
-    id: "workshops",
-    title: "Workshops & Seminars",
-    description: "Host or join interactive learning sessions.",
-    category: "Tools",
-    link: "/about",
-  },
-  {
-    id: "kapmentfeed",
-    title: "KAPment Feed",
-    description: "A subject-based feed that brings together discussions, resources, and peer insights—all in one organized space.",
-    category: "Tools",
-    link: "/about",
-  },
-  {
-    id: "live-collaboration",
-    title: "Live Collaboration",
-    description: "Study, brainstorm, and co-create with peers in real time.",
-    category: "Tools",
-    link: "/about",
-  },
-  {
-    id: "personalized-journeys",
-    title: "Personalized Journeys",
-    description: "Discover topics and communities shaped around your goals.",
-    category: "Tools",
-    link: "/about",
-  },
-  {
-    id: "resource-hub",
-    title: "Resource Hub",
-    description: "Share notes, videos, and learning materials in one place.",
-    category: "Tools",
-    link: "/about",
-  },
-  {
-    id: "growth-recognition",
-    title: "Growth & Recognition",
-    description: "Earn credibility through your contributions.",
-    category: "Trust",
-    link: "/about",
-  },
-  {
-    id: "privacy",
-    title: "Privacy by Design",
-    description: "Your data, your control—built with trust at the core.",
-    category: "Trust",
-    link: "/about",
-  },
-]
 
-export default function LearnMorePage() {
-  const [openAccordion, setOpenAccordion] = useState<number | null>(null)
-
-  const handleRedirect = (link: string) => {
-    if (isLoggedIn) {
-      window.location.href = link
-    } else {
-      window.location.href = "/signup"
-    }
-  }
-
-  return (
-    <div className="min-h-screen bg-black text-white">
       {/* ================= HERO ================= */}
       <section className="flex flex-col items-center justify-center py-24 text-center">
         <h1 className="text-6xl font-bold mb-4">Ecosystem</h1>
@@ -233,7 +238,12 @@ export default function LearnMorePage() {
         </div>
       </section>
 
-{/* ================= FEATURES GRID (Desktop) ================= */}
+// ✅ New handleRedirect: always go to the feature link (with #id)
+const handleRedirect = (link: string) => {
+  window.location.href = link
+}
+
+// ================= FEATURES GRID (Desktop) =================
 <section className="hidden md:block py-24 px-6 max-w-6xl mx-auto">
   <h2 className="text-3xl font-bold text-center mb-4">Everything in One Place</h2>
   
@@ -247,7 +257,7 @@ export default function LearnMorePage() {
       <div
         key={f.id}
         className="bg-gray-900 p-6 rounded-xl hover:bg-gray-800 cursor-pointer transition"
-        onClick={() => handleRedirect(f.link)}
+        onClick={() => handleRedirect(f.link)} // ✅ direct redirect
       >
         <h3 className="text-lg font-semibold mb-2">
           {i + 1}. {f.title}
@@ -273,7 +283,7 @@ export default function LearnMorePage() {
       <div
         key={f.id}
         className="bg-gray-900 p-4 rounded-xl cursor-pointer"
-        onClick={() => handleRedirect(f.link)}
+        onClick={() => handleRedirect(f.link)} // ✅ direct redirect
       >
         <div
           className="flex justify-between items-center"
