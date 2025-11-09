@@ -1,11 +1,12 @@
-"use client";
-import { useState } from "react";
+'use client';
+
+import { Suspense, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import OtpInput from "@/components/auth/OtpInput";
 import AuthCard from "@/components/auth/AuthCard";
 import api from "@/lib/api";
 
-export default function VerifyOtpPage() {
+function VerifyOtpContent() {
   const [otp, setOtp] = useState(Array(6).fill(""));
   const params = useSearchParams();
   const phone = params.get("phone") || "";
@@ -26,8 +27,18 @@ export default function VerifyOtpPage() {
       <AuthCard title="Verify OTP">
         <p className="text-center text-gray-600 mb-2">OTP sent to {phone}</p>
         <OtpInput value={otp} onChange={setOtp} />
-        <button onClick={verifyOtp} className="btn-primary w-full mt-6">Verify</button>
+        <button onClick={verifyOtp} className="btn-primary w-full mt-6">
+          Verify
+        </button>
       </AuthCard>
     </div>
+  );
+}
+
+export default function VerifyOtpPage() {
+  return (
+    <Suspense fallback={<div className="text-center mt-10 text-gray-600">Loading...</div>}>
+      <VerifyOtpContent />
+    </Suspense>
   );
 }
