@@ -1,35 +1,35 @@
 "use client";
-import React, { createContext, useContext, useEffect, useState } from "react";
-import api from "@/lib/api";
+
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { useRouter } from "next/navigation";
+import api from "@/lib/api";
 
 interface User {
   id: string;
-  phone: string;
+  username: string;
   email?: string;
-  username?: string;
-  nickname?: string;
+  phone?: string;
 }
 
 interface AuthContextType {
   user: User | null;
   token: string | null;
   loading: boolean;
-  login: (token: string, user: User) => void;
+  login: (data: any) => Promise<void>;
   logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    const storedUser = localStorage.getItem("user");
+    const storedToken = localStorage.getItem("kapment_token");
+    const storedUser = localStorage.getItem("kapment_user");
     if (storedToken && storedUser) {
       setToken(storedToken);
       setUser(JSON.parse(storedUser));
@@ -37,19 +37,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(false);
   }, []);
 
-  const login = (t: string, u: User) => {
-    setToken(t);
-    setUser(u);
-    localStorage.setItem("token", t);
-    localStorage.setItem("user", JSON.stringify(u));
+  const login = async (data: any) => {
+    setToken(data.token);
+    setUser(data.user);
+    localStorage.setItem("kapment_token", data.token);
+    localStorage.setItem("kapment_user", JSON.stringify(data.user));
     router.push("/dashboard");
   };
 
   const logout = () => {
+    localStorage.removeItem("kapment_token");
+    localStorage.removeItem("kapment_user");
     setToken(null);
     setUser(null);
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
     router.push("/auth/login");
   };
 
@@ -62,6 +62,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 export const useAuth = () => {
   const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error("useAuth must be used within AuthProvider");
+  if (!ctx) throw new Error("useAuth must be used inside AuthProvider");
   return ctx;
 };
