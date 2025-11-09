@@ -15,8 +15,10 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
+      "@/*": ["*"],
       "@/components/*": ["app/components/*"],
-      "@/lib/*": ["lib/*"]
+      "@/lib/*": ["lib/*"],
+      "@/context/*": ["context/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
