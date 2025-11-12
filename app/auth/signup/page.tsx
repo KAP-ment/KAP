@@ -31,16 +31,24 @@ export default function SignupPage() {
   };
 
   /** ---------- GOOGLE ONE-TAP ---------- **/
-  useEffect(() => {
-    window.google?.accounts.id.initialize({
+useEffect(() => {
+  if (typeof window === "undefined") return; // safety for SSR
+
+  const el = document.getElementById("google-signup-btn");
+
+  if (window.google && el) {
+    window.google.accounts.id.initialize({
       client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
       callback: handleGoogleResponse,
     });
-    window.google?.accounts.id.renderButton(
-      document.getElementById('google-signup-btn'),
-      { theme: 'outline', size: 'large', width: 280 }
-    );
-  }, []);
+
+    window.google.accounts.id.renderButton(el, {
+      theme: "outline",
+      size: "large",
+      width: 280,
+    });
+  }
+}, []);
 
   const handleGoogleResponse = async (response: any) => {
     try {
