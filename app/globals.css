@@ -53,3 +53,18 @@ body {
 .btn-primary {
   @apply bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg py-2 font-medium hover:opacity-90 transition;
 }
+export {};
+
+declare global {
+  interface Window {
+    google?: {
+      accounts: {
+        id: {
+          initialize: (options: any) => void;
+          renderButton: (element: HTMLElement, options: any) => void;
+          prompt: () => void;
+        };
+      };
+    };
+  }
+}
